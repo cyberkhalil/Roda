@@ -13,6 +13,7 @@ public class PreRun {
                 null, "هل تريد تثبيت البرنامج حقاً ؟") == JOptionPane.YES_OPTION) {
             prepare();
         }
+        // TODO else stop the program
     }
 
     public static boolean isPrepared() {

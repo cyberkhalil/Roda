@@ -172,13 +172,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="contentTitleLbl" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="studentsPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="coursesPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="itemsPnl" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -396,13 +396,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="coursesTitleLbl" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="printCoursesInfoBtn" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="editCoursesBtn" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="courseAddBtn" min="-2" pref="155" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
