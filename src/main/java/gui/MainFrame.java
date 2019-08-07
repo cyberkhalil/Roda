@@ -1,25 +1,33 @@
 package gui;
 
 import com.alee.laf.WebLookAndFeel;
+import com.alee.utils.FileUtils;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.io.File;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import util.PreRun;
+import util.Statics;
 
 public class MainFrame extends JFrame {
 
     public MainFrame() {
-
         initComponents();
 
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainFrame.class.getClassLoader().
                 getResource("img/Roda.jpg")).getImage().getScaledInstance(
                 imgLbl.getWidth(), imgLbl.getHeight(), Image.SCALE_DEFAULT));
         imgLbl.setIcon(imageIcon);
+        for (String availableYear : Statics.getAvailableYears()) {
+            yearCB.addItem(availableYear);
+        }
+        yearCB.setSelectedIndex(1);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,13 +47,15 @@ public class MainFrame extends JFrame {
         itemLbl = new javax.swing.JLabel();
         itemAddBtn = new javax.swing.JButton();
         itemEdiBtn = new javax.swing.JButton();
-        itemEdiBtn1 = new javax.swing.JButton();
+        printItemsInfoBtn = new javax.swing.JButton();
         contentTitleLbl = new javax.swing.JLabel();
         coursesPnl = new javax.swing.JPanel();
         coursesTitleLbl = new javax.swing.JLabel();
         courseAddBtn = new javax.swing.JButton();
         editCoursesBtn = new javax.swing.JButton();
         printCoursesInfoBtn = new javax.swing.JButton();
+        yearCB = new javax.swing.JComboBox<>();
+        yearLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setIconImage(new ImageIcon(MainFrame.class.getClassLoader().getResource("img/Roda.jpg")).getImage());
@@ -112,6 +122,11 @@ public class MainFrame extends JFrame {
         editStudentsBtn.setText("تعديل بيانات الطلاب");
 
         printStudentsInfoBtn.setText("طباعة بيانات الطلاب");
+        printStudentsInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printStudentsInfoBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentsPnlLayout = new javax.swing.GroupLayout(studentsPnl);
         studentsPnl.setLayout(studentsPnlLayout);
@@ -152,7 +167,12 @@ public class MainFrame extends JFrame {
 
         itemEdiBtn.setText("تعديل بيانات العناصر");
 
-        itemEdiBtn1.setText("طباعة بيانات العناصر");
+        printItemsInfoBtn.setText("طباعة بيانات العناصر");
+        printItemsInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printItemsInfoBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout itemsPnlLayout = new javax.swing.GroupLayout(itemsPnl);
         itemsPnl.setLayout(itemsPnlLayout);
@@ -162,7 +182,7 @@ public class MainFrame extends JFrame {
             .addGroup(itemsPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(itemsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(itemEdiBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(printItemsInfoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(itemAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(itemEdiBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -176,7 +196,7 @@ public class MainFrame extends JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(itemEdiBtn)
                 .addGap(15, 15, 15)
-                .addComponent(itemEdiBtn1)
+                .addComponent(printItemsInfoBtn)
                 .addGap(20, 20, 20))
         );
 
@@ -200,6 +220,11 @@ public class MainFrame extends JFrame {
         editCoursesBtn.setText("تعديل بيانات الصفوف");
 
         printCoursesInfoBtn.setText("طباعة بيانات الصفوف");
+        printCoursesInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printCoursesInfoBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout coursesPnlLayout = new javax.swing.GroupLayout(coursesPnl);
         coursesPnl.setLayout(coursesPnlLayout);
@@ -227,25 +252,46 @@ public class MainFrame extends JFrame {
                 .addGap(20, 20, 20))
         );
 
+        yearCB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "إضافة سنة دراسية جديدة" }));
+        yearCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                yearCBItemStateChanged(evt);
+            }
+        });
+
+        yearLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        yearLbl.setForeground(new java.awt.Color(0, 51, 153));
+        yearLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        yearLbl.setText("السنة الدراسية");
+
         javax.swing.GroupLayout content_jPanelLayout = new javax.swing.GroupLayout(content_jPanel);
         content_jPanel.setLayout(content_jPanelLayout);
         content_jPanelLayout.setHorizontalGroup(
             content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contentTitleLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(content_jPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(studentsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(itemsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addComponent(contentTitleLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(yearLbl)
+                    .addComponent(itemsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         content_jPanelLayout.setVerticalGroup(
             content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_jPanelLayout.createSequentialGroup()
                 .addComponent(contentTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
+                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearLbl))
+                .addGap(30, 30, 30)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(studentsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(coursesPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -282,12 +328,88 @@ public class MainFrame extends JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         int confirm = JOptionPane.showConfirmDialog(
                 rootPane, "هل أنت متأكد أنك تريد الخروج من البرنامج ؟", "تأكيد الخروج",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (confirm == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void printStudentsInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printStudentsInfoBtnActionPerformed
+        JFileChooser f = new JFileChooser();
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        f.showSaveDialog(rootPane);
+
+        File selectedFolder = f.getSelectedFile();
+        if (selectedFolder == null) {
+            return;
+        }
+        for (File file : Statics.STUDENTS_PATH.listFiles()) {
+            FileUtils.copyFile(file, new File(selectedFolder + "/" + file.getName()));
+        }
+    }//GEN-LAST:event_printStudentsInfoBtnActionPerformed
+
+    private void printCoursesInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printCoursesInfoBtnActionPerformed
+        JFileChooser f = new JFileChooser();
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        f.showSaveDialog(rootPane);
+
+        File selectedFolder = f.getSelectedFile();
+        if (selectedFolder == null) {
+            return;
+        }
+        for (File file : Statics.COURSES_PATH.listFiles()) {
+            FileUtils.copyFile(file, new File(selectedFolder + "/" + file.getName()));
+        }
+    }//GEN-LAST:event_printCoursesInfoBtnActionPerformed
+
+    private void printItemsInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printItemsInfoBtnActionPerformed
+        JFileChooser f = new JFileChooser();
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        f.showSaveDialog(rootPane);
+
+        File selectedFolder = f.getSelectedFile();
+        if (selectedFolder == null) {
+            return;
+        }
+        for (File file : Statics.ITEMS_PATH.listFiles()) {
+            FileUtils.copyFile(file, new File(selectedFolder + "/" + file.getName()));
+        }
+    }//GEN-LAST:event_printItemsInfoBtnActionPerformed
+
+    private void yearCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_yearCBItemStateChanged
+        if (evt.getStateChange() != ItemEvent.SELECTED) {
+            return;
+        }
+        if (yearCB.getSelectedIndex() > 0) {
+            Statics.CurrentYear = yearCB.getSelectedItem().toString();
+        } else {
+            String year = JOptionPane.showInputDialog(rootPane, "أدخل السنة الجديدة");
+            if (year == null) {
+                yearCB.setSelectedIndex(1);
+                return;
+            }
+            year = year.trim();
+            if (year.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "السنة الجديدة لا يجب أن تكون فارغة !");
+                yearCB.setSelectedIndex(1);
+            } else if (year.contains("/")) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "السنة الجديدة لا يجب أن تحتوي على علامة (/)");
+                yearCB.setSelectedIndex(1);
+            } else {
+                new File(Statics.RODA_PATH, year).mkdirs();
+                yearCB.addItem(year);
+                yearCB.setSelectedItem(year);
+                Statics.CurrentYear = year;
+            }
+        }
+        try {
+            Statics.RefreshAfterYearSelected();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, "هناك خطأ إنشاء في الملفات");
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_yearCBItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel contentTitleLbl;
@@ -300,20 +422,21 @@ public class MainFrame extends JFrame {
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton itemAddBtn;
     private javax.swing.JButton itemEdiBtn;
-    private javax.swing.JButton itemEdiBtn1;
     private javax.swing.JLabel itemLbl;
     protected javax.swing.JPanel itemsPnl;
     private javax.swing.JButton printCoursesInfoBtn;
+    private javax.swing.JButton printItemsInfoBtn;
     private javax.swing.JButton printStudentsInfoBtn;
     private javax.swing.JButton studentAddBtn;
     private javax.swing.JLabel studentTitleLbl;
     protected javax.swing.JPanel studentsPnl;
     private javax.swing.JLabel titleLbl;
     protected javax.swing.JPanel titlePnl;
+    private javax.swing.JComboBox<String> yearCB;
+    private javax.swing.JLabel yearLbl;
     // End of variables declaration//GEN-END:variables
 
     public static void main(String args[]) {
-        // TODO make create years combobox & years foliders.
         try {
             PreRun.CheckAndPrepare();
         } catch (IOException ex) {

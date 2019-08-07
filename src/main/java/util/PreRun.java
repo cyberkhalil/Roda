@@ -9,11 +9,16 @@ import static util.Statics.PROGRAM_FOLIDERS;
 public class PreRun {
 
     public static void CheckAndPrepare() throws IOException {
-        if (!isPrepared() && JOptionPane.showConfirmDialog(
-                null, "هل تريد تثبيت البرنامج حقاً ؟") == JOptionPane.YES_OPTION) {
-            prepare();
+        if (!isPrepared()) {
+            if (JOptionPane.showConfirmDialog(
+                    null, "هل تريد تثبيت البرنامج حقاً ؟") == JOptionPane.YES_OPTION) {
+                prepare();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "آسف ولكن عليك أن تنصب البرنامج لتتمكن من استخدامه..");
+                System.exit(0);
+            }
         }
-        // TODO else stop the program
     }
 
     public static boolean isPrepared() {
@@ -45,7 +50,7 @@ public class PreRun {
                 file.createNewFile();
             }
         }
-        // TODO create STUDENTS_FILE , ITEMS_FILE , COURSES_FILE
+        // TODO create first sheet in each of STUDENTS_FILE , ITEMS_FILE , COURSES_FILE
     }
 
     private PreRun() {

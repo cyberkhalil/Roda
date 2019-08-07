@@ -156,16 +156,22 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Component id="contentTitleLbl" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="studentsPnl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="coursesPnl" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="coursesPnl" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearCB" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="itemsPnl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="yearLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemsPnl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="contentTitleLbl" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -173,6 +179,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="contentTitleLbl" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="yearCB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yearLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="studentsPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="coursesPnl" alignment="0" max="32767" attributes="0"/>
@@ -265,6 +276,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x637;&#x628;&#x627;&#x639;&#x629; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x637;&#x644;&#x627;&#x628;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printStudentsInfoBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -292,7 +306,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="itemEdiBtn1" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="printItemsInfoBtn" min="-2" pref="171" max="-2" attributes="0"/>
                           <Component id="itemAddBtn" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                           <Component id="itemEdiBtn" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
@@ -309,7 +323,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="itemEdiBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="itemEdiBtn1" min="-2" max="-2" attributes="0"/>
+                      <Component id="printItemsInfoBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -345,10 +359,13 @@
                 <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x639;&#x646;&#x627;&#x635;&#x631;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="itemEdiBtn1">
+            <Component class="javax.swing.JButton" name="printItemsInfoBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x637;&#x628;&#x627;&#x639;&#x629; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x639;&#x646;&#x627;&#x635;&#x631;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printItemsInfoBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -455,9 +472,42 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x637;&#x628;&#x627;&#x639;&#x629; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x635;&#x641;&#x648;&#x641;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printCoursesInfoBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JComboBox" name="yearCB">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x633;&#x646;&#x629; &#x62f;&#x631;&#x627;&#x633;&#x64a;&#x629; &#x62c;&#x62f;&#x64a;&#x62f;&#x629;"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="yearCBItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="yearLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="33" red="0" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x633;&#x646;&#x629; &#x627;&#x644;&#x62f;&#x631;&#x627;&#x633;&#x64a;&#x629;"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
