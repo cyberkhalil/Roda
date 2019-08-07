@@ -1,7 +1,6 @@
 package core.course;
 
 public class Course {
-    // TODO implement Setters
 
     private int id;
     private String name;
@@ -27,6 +26,24 @@ public class Course {
 
     public int getYear() {
         return year;
+    }
+
+    public void setName(String name) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.name = name;
+    }
+
+    public void setTeacherName(String teacherName) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.teacherName = teacherName;
+    }
+
+    public void setYear(int year) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.year = year;
     }
 
 }

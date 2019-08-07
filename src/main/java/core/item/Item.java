@@ -1,12 +1,11 @@
 package core.item;
 
 public class Item {
-    // TODO implement Setters
 
     private int id;
     private String name;
-    private String description;
     private double price;
+    private String description;
 
     public Item(int id) {
         // TODO implement this constractor
@@ -21,12 +20,30 @@ public class Item {
         return name;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public double getPrice() {
-        return price;
+    public void setName(String name) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+//        this.description = description;
     }
 
 }
