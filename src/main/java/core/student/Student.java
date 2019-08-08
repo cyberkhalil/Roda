@@ -174,4 +174,10 @@ public class Student {
         throw new UnsupportedOperationException("This operation is still not supported");
 //        this.courseId = c.getId;
     }
+
+    public void delete() {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+    }
+
 }

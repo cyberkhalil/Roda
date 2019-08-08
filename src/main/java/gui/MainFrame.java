@@ -2,29 +2,25 @@ package gui;
 
 import com.alee.laf.WebLookAndFeel;
 import com.alee.utils.FileUtils;
-import java.awt.Image;
+import gui.course.AddCourse;
+import gui.course.EditCourses;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import util.PreRun;
 import util.Statics;
+import util.gui.GUI_Util;
 import util.gui.JSystemFileChooser;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainFrame.class.getClassLoader().
-                getResource("img/Roda.jpg")).getImage().getScaledInstance(
-                imgLbl.getWidth(), imgLbl.getHeight(), Image.SCALE_DEFAULT));
-        imgLbl.setIcon(imageIcon);
+        setUpImg();
         for (String availableYear : Statics.getAvailableYears()) {
             yearCB.addItem(availableYear);
         }
@@ -59,7 +55,7 @@ public class MainFrame extends JFrame {
         yearLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setIconImage(new ImageIcon(MainFrame.class.getClassLoader().getResource("img/Roda.jpg")).getImage());
+        setIconImage(new javax.swing.ImageIcon(this.getClass().getClassLoader().getResource("img/Roda.jpg")).getImage());
         setMinimumSize(null);
         setName("frame"); // NOI18N
         setResizable(false);
@@ -217,8 +213,18 @@ public class MainFrame extends JFrame {
         coursesTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         courseAddBtn.setText("إضافة صف جديد");
+        courseAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courseAddBtnActionPerformed(evt);
+            }
+        });
 
         editCoursesBtn.setText("تعديل بيانات الصفوف");
+        editCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCoursesBtnActionPerformed(evt);
+            }
+        });
 
         printCoursesInfoBtn.setText("طباعة بيانات الصفوف");
         printCoursesInfoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -278,13 +284,12 @@ public class MainFrame extends JFrame {
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(content_jPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(yearLbl)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_jPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(studentsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
         );
@@ -412,9 +417,21 @@ public class MainFrame extends JFrame {
             Statics.RefreshAfterYearSelected();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, "هناك خطأ إنشاء في الملفات");
-            System.out.println(ex);
+            System.err.println(ex);
         }
     }//GEN-LAST:event_yearCBItemStateChanged
+
+    private void courseAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseAddBtnActionPerformed
+        AddCourse frame = new AddCourse();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, courseAddBtn);
+    }//GEN-LAST:event_courseAddBtnActionPerformed
+
+    private void editCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCoursesBtnActionPerformed
+        EditCourses frame = new EditCourses();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, editCoursesBtn);
+    }//GEN-LAST:event_editCoursesBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel contentTitleLbl;
@@ -447,18 +464,24 @@ public class MainFrame extends JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "حدث خطأ أثناء تنصيب البرنامج ,"
                     + "الرجاء المحاولة من الجديد");
-            System.out.println(ex);
+            System.err.println(ex);
         }
 
         try {
             UIManager.setLookAndFeel(new WebLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
             JOptionPane.showMessageDialog(null, "لا يمكن تشغيل ميزة الظهور بشكل مناسب");
-            System.out.println(ex);
+            System.err.println(ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
             new MainFrame().setVisible(true);
         });
+    }
+
+    private void setUpImg() {
+        imgLbl.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(this.getClass().
+                getClassLoader().getResource("img/Roda.jpg")).getImage().getScaledInstance(
+                imgLbl.getWidth(), imgLbl.getHeight(), java.awt.Image.SCALE_DEFAULT)));
     }
 
 }

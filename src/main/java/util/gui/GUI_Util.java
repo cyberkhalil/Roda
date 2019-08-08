@@ -3,7 +3,6 @@ package util.gui;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
@@ -15,46 +14,31 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Row;
 
 public class GUI_Util {
 
-    public static DefaultTableModel buildTableModel(ResultSet rs)
-            throws SQLException {
-        ResultSetMetaData metaData = rs.getMetaData();
-
-        // names of columns
-        ArrayList<String> columnNames = new ArrayList<>();
-        int columnCount = metaData.getColumnCount();
-        for (int column = 1; column <= columnCount; column++) {
-            columnNames.add(metaData.getColumnName(column));
+    public static DefaultTableModel buildTableModel(ArrayList<Row> rows, int columnCount) {
+        String[] columnNames = new String[columnCount];
+        for (int i = 0; i < columnCount; i++) {
+            columnNames[i] = rows.get(0).getCell(i).getRichStringCellValue().getString();
         }
-
-        // data of the table
-        ArrayList<Object[]> data = new ArrayList<>();
-        while (rs.next()) {
-            Object[] data1 = new Object[columnCount];
-            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                data1[columnIndex - 1] = (rs.getObject(columnIndex));
+        ArrayList<Object[]> data = new ArrayList<>(rows.size() - 1);
+        for (int i = 1; i < rows.size(); i++) {
+            Object[] row = new Object[columnCount];
+            for (int j = 0; j < columnCount; j++) {
+                row[j] = rows.get(i).getCell(j);
             }
-            data.add(data1);
+            data.add(row);
         }
         return new DefaultTableModel(
-                data.toArray(new Object[data.size()][columnCount]),
-                columnNames.toArray()) {
+                data.toArray(new Object[data.size()][columnCount]), columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 // for preventing any cell edit
                 return false;
             }
         };
-    }
-
-    public static DefaultComboBoxModel buildComboBoxModel(ResultSet rs) throws SQLException {
-        ArrayList<String> arrayList = new ArrayList<>();
-        while (rs.next()) {
-            arrayList.add(rs.getString(1));
-        }
-        return new DefaultComboBoxModel(arrayList.toArray());
     }
 
     public static void link_frame_to_button(JFrame frame, JButton button) {
@@ -152,8 +136,6 @@ public class GUI_Util {
 
     public static DisplayProgressBar displayProgressBar(String title, String labelTxt,
             UpdateProgressBarOperation upbo) {
-        // title = Everest Updater
-        // labelTxt = Downloading File ..
         DisplayProgressBar frame = new DisplayProgressBar(title, labelTxt, upbo);
         frame.setVisible(true);
         return frame;

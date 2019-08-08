@@ -1,5 +1,6 @@
 package util.gui;
 
+import javax.swing.JOptionPane;
 import util.gui.GUI_Util.UpdateProgressBarOperation;
 
 public class DisplayProgressBar extends javax.swing.JFrame {
@@ -10,6 +11,12 @@ public class DisplayProgressBar extends javax.swing.JFrame {
         jLabel1.setText(labelText);
         new Thread(() -> {
             while (!upbo.updateBar(jProgressBar1, jLabel2)) {
+                try {
+                    Thread.currentThread().sleep(500);
+                } catch (InterruptedException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "حدثت مشكلة في حالة الثريد");
+                    System.err.println(ex);
+                }
             }
             this.dispose();
         }).start();

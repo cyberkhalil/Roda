@@ -2,6 +2,8 @@ package util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -79,7 +81,7 @@ public class Statics {
                     new FileInputStream(STUDENTS_PURCHASES_FILE)).getSheetAt(0);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "خطأ في إعداد أوراق الإكسل !");
-            System.out.println(ex);
+            System.err.println(ex);
         }
     }
 
@@ -97,4 +99,27 @@ public class Statics {
         PreRun.prepare();
         setUpSheets();
     }
+
+    public static void updateSheet(Sheet s) throws IOException {
+        FileOutputStream fos;
+        if (s.equals(STUDENTS_SHEET)) {
+            fos = new FileOutputStream(STUDENTS_FILE);
+        } else if (s.equals(ITEMS_SHEET)) {
+            fos = new FileOutputStream(ITEMS_FILE);
+        } else if (s.equals(COURSES_SHEET)) {
+            fos = new FileOutputStream(COURSES_FILE);
+        } else if (s.equals(STUDENTS_ITEMS_SHEET)) {
+            fos = new FileOutputStream(STUDENTS_ITEMS_FILE);
+        } else if (s.equals(STUDENTS_PURCHASES_SHEET)) {
+            fos = new FileOutputStream(STUDENTS_PURCHASES_FILE);
+        } else {
+            throw new IOException("لم يتم التعرف على الشيت");
+        }
+        s.getWorkbook().write(fos);
+        fos.close();
+    }
+
+    private Statics() {
+    }
+
 }

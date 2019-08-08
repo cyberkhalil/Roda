@@ -46,4 +46,9 @@ public class Item {
 //        this.description = description;
     }
 
+    public void delete() {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is still not supported");
+    }
+
 }
