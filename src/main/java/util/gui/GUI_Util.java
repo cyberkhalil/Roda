@@ -1,9 +1,15 @@
 package util.gui;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +19,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import util.Random;
+import util.Statics;
 
 public class GUI_Util {
 
@@ -38,6 +47,37 @@ public class GUI_Util {
                 return false;
             }
         };
+    }
+
+    public static ImageIcon getImageIconFromCell(Cell cell) {
+        return getImageIconFromCellString(cell.getStringCellValue());
+    }
+
+    public static ImageIcon getImageIconFromCellString(String s) {
+        if (isImageCellString(s)) {
+            String imgName = s.substring(5, s.length() - 1);
+            return new ImageIcon(Statics.IMAGES_PATH + File.pathSeparator + imgName);
+        }
+        return new ImageIcon(Statics.NULL_IMAGE_FILE.toString());
+    }
+
+    public static String setImageIconAsStringToCell(String imgPath) throws IOException {
+        File input = new File(imgPath);
+        File output = new File(Statics.IMAGES_PATH, Random.generateRandomString(10) + ".jpg");
+        BufferedImage image = ImageIO.read(input);
+        BufferedImage outputImg = new BufferedImage(image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_INT_RGB);
+        outputImg.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
+        ImageIO.write(outputImg, "jpg", output);
+        return "{img:" + output + "}";
+    }
+
+    public static boolean isImageCell(Cell c) {
+        return isImageCellString(c.getRichStringCellValue().toString());
+    }
+
+    public static boolean isImageCellString(String s) {
+        return s.startsWith("{img:") && s.endsWith("}");
     }
 
     public static void link_frame_to_button(JFrame frame, JButton button) {

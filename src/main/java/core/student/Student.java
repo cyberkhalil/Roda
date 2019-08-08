@@ -24,9 +24,10 @@ public class Student {
     private String citizenOrRefugee;
     private String address;
     private int courseId;
+    private String image;
 
     private final Row row;
-    public final static int COLUMN_COUNT = 14;
+    public final static int COLUMN_COUNT = 15;
 
     public Student(int id) {
         this.row = STUDENTS_SHEET.getRow(id + 1);
@@ -125,6 +126,10 @@ public class Student {
         return courseId;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setFirstName(String firstName) throws IOException {
         this.row.getCell(1).setCellValue(firstName);
         updateSheet(STUDENTS_SHEET);
@@ -207,6 +212,12 @@ public class Student {
         this.row.getCell(13).setCellValue(courseId);
         updateSheet(STUDENTS_SHEET);
         this.courseId = courseId;
+    }
+
+    public void setImage(String image) throws IOException {
+        this.row.getCell(14).setCellValue(image);
+        updateSheet(STUDENTS_SHEET);
+        this.image = image;
     }
 
     public void delete() throws IOException {

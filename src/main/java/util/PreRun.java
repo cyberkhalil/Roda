@@ -1,5 +1,6 @@
 package util;
 
+import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,6 +78,7 @@ public class PreRun {
                         row1.createCell(11).setCellValue("مواطن أم لاجئ");
                         row1.createCell(12).setCellValue("العنوان");
                         row1.createCell(13).setCellValue("رقم الصف");
+                        row1.createCell(14).setCellValue("الصورة");
                     } else if (file == Statics.COURSES_FILE) {
                         Row row1 = sheet.createRow(1);
                         row1.createCell(0).setCellValue("رقم الصف");
@@ -108,13 +110,16 @@ public class PreRun {
             }
         }
         // create non-exsisted files
-        /* Not Used
         for (File file : PROGRAM_FILES) {
             if (!file.exists()) {
-                file.createNewFile();
+                if (file == Statics.NULL_IMAGE_FILE) {
+                    FileUtils.copyURLToFile(
+                            new PreRun().getClass().getResource("/img/null.jpg"), file);
+                } else {
+                    file.createNewFile();
+                }
             }
         }
-         */
     }
 
     private PreRun() {

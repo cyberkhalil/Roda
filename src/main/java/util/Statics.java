@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 public class Statics {
 
     public static final File RODA_PATH;
+    public static File IMAGES_PATH;
     public static String CurrentYear;
     public static File CurrentYearPath;
     public static File STUDENTS_PATH;
@@ -25,6 +26,7 @@ public class Statics {
     public static File COURSES_FILE;
     public static File STUDENTS_ITEMS_FILE;
     public static File STUDENTS_PURCHASES_FILE;
+    public static File NULL_IMAGE_FILE;
 
     public static File[] PROGRAM_FOLDERS;
     public static File[] PROGRAM_FILES;
@@ -50,6 +52,7 @@ public class Statics {
         STUDENTS_PATH = new File(CurrentYearPath, "Students");
         ITEMS_PATH = new File(CurrentYearPath, "Items");
         COURSES_PATH = new File(CurrentYearPath, "Courses");
+        IMAGES_PATH = new File(RODA_PATH, "Images");
         STUDENTS_ITEMS_PATH = new File(CurrentYearPath, "StudentItems");
         STUDENTS_PURCHASES_PATH = new File(CurrentYearPath, "StudentPurchases");
         STUDENTS_FILE = new File(STUDENTS_PATH, "Students.xls");
@@ -57,13 +60,15 @@ public class Statics {
         COURSES_FILE = new File(COURSES_PATH, "Courses.xls");
         STUDENTS_ITEMS_FILE = new File(STUDENTS_ITEMS_PATH, "StudentsItems.xls");
         STUDENTS_PURCHASES_FILE = new File(STUDENTS_PURCHASES_PATH, "StudentPurchases.xls");
+        NULL_IMAGE_FILE = new File(IMAGES_PATH, "null.jpg");
 
         PROGRAM_FOLDERS = new File[]{
             RODA_PATH, CurrentYearPath, STUDENTS_PATH, ITEMS_PATH, COURSES_PATH,
-            STUDENTS_ITEMS_PATH, STUDENTS_PURCHASES_PATH
+            IMAGES_PATH, STUDENTS_ITEMS_PATH, STUDENTS_PURCHASES_PATH
         };
         PROGRAM_FILES = new File[]{
-            STUDENTS_FILE, ITEMS_FILE, COURSES_FILE, STUDENTS_ITEMS_FILE, STUDENTS_PURCHASES_FILE
+            STUDENTS_FILE, ITEMS_FILE, COURSES_FILE, STUDENTS_ITEMS_FILE, STUDENTS_PURCHASES_FILE,
+             NULL_IMAGE_FILE
         };
         PROGRAM_SHEET_FILES = new File[]{
             STUDENTS_FILE, ITEMS_FILE, COURSES_FILE, STUDENTS_ITEMS_FILE, STUDENTS_PURCHASES_FILE

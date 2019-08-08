@@ -17,7 +17,7 @@ public class StudentsUtil {
     public static void createStudent(String firstName, String fatherName, String motherName,
             String grandFatherName, String lastName, Date birthDate, String identitiyNumber,
             String guardianName, String guardianJob, String guardianPhone, String citizenOrRefugee,
-            String address, int courseId)
+            String address, int courseId, String imgPath)
             throws IOException {
         Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
         int preValue = (int) c.getNumericCellValue();
@@ -37,6 +37,7 @@ public class StudentsUtil {
         CourseRow.createCell(11).setCellValue(citizenOrRefugee);
         CourseRow.createCell(12).setCellValue(address);
         CourseRow.createCell(13).setCellValue(courseId);
+        CourseRow.createCell(14).setCellValue(GUI_Util.setImageIconAsStringToCell(imgPath));
         c.setCellValue(preValue + 1); // max value will get addition 1
         updateSheet(STUDENTS_SHEET);
     }
@@ -44,15 +45,34 @@ public class StudentsUtil {
     public static DefaultTableModel getStudentsAsTable() {
         Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
         int max = (int) c.getNumericCellValue() + 2;
-        ArrayList<Row> rows = new ArrayList<>();
-        for (int i = 1; i < max; i++) {
+        String[] headers = new String[Student.COLUMN_COUNT];
+        for (int i = 0; i < Student.COLUMN_COUNT; i++) {
+            headers[i] = STUDENTS_SHEET.getRow(1).getCell(i).getRichStringCellValue().getString();
+        }
+
+        ArrayList<Object[]> data = new ArrayList<>();
+        for (int i = 2; i < max; i++) {
             Row row = STUDENTS_SHEET.getRow(i);
             if (cellIsNull0OrBlank(row.getCell(0))) {
                 continue;
             }
-            rows.add(row);
+            Object[] rowArray = new Object[Student.COLUMN_COUNT];
+            for (int j = 0; j < Student.COLUMN_COUNT; j++) {
+                rowArray[j] = row.getCell(j);
+                if (GUI_Util.isImageCellString(rowArray[j].toString())) {
+                    rowArray[j] = GUI_Util.getImageIconFromCellString(rowArray[j].toString());
+                }
+            }
+            data.add(rowArray);
         }
-        return GUI_Util.buildTableModel(rows, Student.COLUMN_COUNT);
+        return new DefaultTableModel(
+                data.toArray(new Object[data.size()][Student.COLUMN_COUNT]), headers) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // for preventing any cell edit
+                return false;
+            }
+        };
     }
 
     public static DefaultComboBoxModel getcitizenOrRefugeeAsComboBox() {
