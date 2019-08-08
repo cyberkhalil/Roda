@@ -1,15 +1,14 @@
-package gui.course;
+package gui.item;
 
-import core.course.CoursesUtil;
+import core.item.ItemsUtil;
 import javax.swing.JOptionPane;
 import util.gui.GUI_Util;
 
-public class AddCourse extends javax.swing.JFrame {
+public class AddItem extends javax.swing.JFrame {
 
-    public AddCourse() {
+    public AddItem() {
         initComponents();
         GUI_Util.setUpRodaImgLbl(imgLbl);
-        yearCB.setSelectedIndex(1);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,17 +20,17 @@ public class AddCourse extends javax.swing.JFrame {
         titleLbl = new javax.swing.JLabel();
         contentPnl = new javax.swing.JPanel();
         contentTitleLbl = new javax.swing.JLabel();
-        addCourseBtn = new javax.swing.JButton();
-        courseNameLbl = new javax.swing.JLabel();
-        courseNameTf = new javax.swing.JTextField();
-        daysLbl1 = new javax.swing.JLabel();
-        teacherNameTf = new javax.swing.JTextField();
-        daysLbl2 = new javax.swing.JLabel();
-        yearCB = new javax.swing.JComboBox<>();
+        addItemBtn = new javax.swing.JButton();
+        itemNameLbl = new javax.swing.JLabel();
+        itemNameTf = new javax.swing.JTextField();
+        itemPriceLbl = new javax.swing.JLabel();
+        itemDescLbl = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        itemDescTa = new javax.swing.JTextArea();
+        itemPriceSp = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new javax.swing.ImageIcon(this.getClass().getClassLoader().getResource("img/Roda.jpg")).getImage());
-        setMaximumSize(null);
         setMinimumSize(null);
         setName("frame"); // NOI18N
         setResizable(false);
@@ -44,7 +43,7 @@ public class AddCourse extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("إضافة صف جديد");
+        titleLbl.setText("إضافة عنصر جديد");
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -69,34 +68,37 @@ public class AddCourse extends javax.swing.JFrame {
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
         contentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentTitleLbl.setText("معلومات الصف الجديد");
+        contentTitleLbl.setText("معلومات العنصر الجديد");
 
-        addCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        addCourseBtn.setForeground(new java.awt.Color(0, 51, 153));
-        addCourseBtn.setText("إضافة");
-        addCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+        addItemBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addItemBtn.setForeground(new java.awt.Color(0, 51, 153));
+        addItemBtn.setText("إضافة");
+        addItemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCourseBtnActionPerformed(evt);
+                addItemBtnActionPerformed(evt);
             }
         });
 
-        courseNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseNameLbl.setForeground(new java.awt.Color(0, 51, 153));
-        courseNameLbl.setText("اسم الصف :");
+        itemNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        itemNameLbl.setForeground(new java.awt.Color(0, 51, 153));
+        itemNameLbl.setText("اسم العنصر :");
 
-        courseNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        itemNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        daysLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        daysLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        daysLbl1.setText("اسم المدرسة :");
+        itemPriceLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        itemPriceLbl.setForeground(new java.awt.Color(0, 51, 153));
+        itemPriceLbl.setText("سعر العنصر :");
 
-        teacherNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        itemDescLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        itemDescLbl.setForeground(new java.awt.Color(0, 51, 153));
+        itemDescLbl.setText("الوصف :");
 
-        daysLbl2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        daysLbl2.setForeground(new java.awt.Color(0, 51, 153));
-        daysLbl2.setText("السن :");
+        itemDescTa.setColumns(20);
+        itemDescTa.setRows(5);
+        jScrollPane1.setViewportView(itemDescTa);
+        itemDescTa.setComponentOrientation(java.awt.ComponentOrientation.RIGHT_TO_LEFT);
 
-        yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "سن مختلف", "بستان", "تمهيدي" }));
+        itemPriceSp.setModel(new javax.swing.SpinnerNumberModel(0.0,0,1000,1));
 
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
@@ -104,21 +106,18 @@ public class AddCourse extends javax.swing.JFrame {
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
             .addGroup(contentPnlLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addItemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(itemNameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
+                    .addComponent(itemPriceSp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentPnlLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(courseNameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(teacherNameTf)
-                            .addComponent(yearCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(daysLbl1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(daysLbl2)
-                            .addComponent(courseNameLbl)))
-                    .addGroup(contentPnlLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(itemPriceLbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(itemDescLbl)
+                    .addComponent(itemNameLbl))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contentPnlLayout.setVerticalGroup(
@@ -128,22 +127,20 @@ public class AddCourse extends javax.swing.JFrame {
                 .addComponent(contentTitleLbl)
                 .addGap(20, 20, 20)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseNameLbl))
+                    .addComponent(itemNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(itemNameLbl))
                 .addGap(20, 20, 20)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(daysLbl1)
-                    .addComponent(teacherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itemPriceLbl)
+                    .addComponent(itemPriceSp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(daysLbl2)
-                    .addComponent(yearCB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(addCourseBtn)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(itemDescLbl)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(addItemBtn)
                 .addGap(20, 20, 20))
         );
-
-        ((javax.swing.JLabel)yearCB.getRenderer()).setHorizontalAlignment(javax.swing.JLabel.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,34 +160,35 @@ public class AddCourse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-        if (courseNameTf.getText() == null || courseNameTf.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "يجب أن تضع اسماً للصف !");
+    private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
+        if (itemNameTf.getText() == null || itemNameTf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "يجب أن تضع اسماً للعنصر !");
             return;
         }
         try {
-            CoursesUtil.createCourse(courseNameTf.getText(), teacherNameTf.getText(),
-                    yearCB.getSelectedItem().toString());
-            JOptionPane.showMessageDialog(rootPane, "تمت إضافة الصف الجديد بنجاح");
+            ItemsUtil.createItem(itemNameTf.getText(), (double) itemPriceSp.getValue(),
+                    itemDescTa.getText());
+            JOptionPane.showMessageDialog(rootPane, "تمت إضافة العنصر الجديد بنجاح");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ أثناء عملية الإضافة");
             System.err.println(ex);
         }
-    }//GEN-LAST:event_addCourseBtnActionPerformed
+    }//GEN-LAST:event_addItemBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addCourseBtn;
+    private javax.swing.JButton addItemBtn;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JLabel contentTitleLbl;
-    private javax.swing.JLabel courseNameLbl;
-    private javax.swing.JTextField courseNameTf;
-    private javax.swing.JLabel daysLbl1;
-    private javax.swing.JLabel daysLbl2;
     private javax.swing.JLabel imgLbl;
-    private javax.swing.JTextField teacherNameTf;
+    private javax.swing.JLabel itemDescLbl;
+    private javax.swing.JTextArea itemDescTa;
+    private javax.swing.JLabel itemNameLbl;
+    private javax.swing.JTextField itemNameTf;
+    private javax.swing.JLabel itemPriceLbl;
+    private javax.swing.JSpinner itemPriceSp;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
-    private javax.swing.JComboBox<String> yearCB;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -8,7 +8,7 @@ import static util.Statics.updateSheet;
 
 public class Item {
 
-    private int id;
+    private final int id;
     private String name;
     private double price;
     private String description;
@@ -17,8 +17,11 @@ public class Item {
     public final static int COLUMN_COUNT = 4;
 
     public Item(int id) {
-        // TODO implement this constractor
-        throw new UnsupportedOperationException("This operation is still not supported");
+        this.row = ITEMS_SHEET.getRow(id + 1);
+        this.id = (int) row.getCell(0).getNumericCellValue();
+        this.name = row.getCell(1).getRichStringCellValue().getString();
+        this.price = row.getCell(2).getNumericCellValue();
+        this.description = row.getCell(3).getRichStringCellValue().getString();
     }
 
     public int getId() {

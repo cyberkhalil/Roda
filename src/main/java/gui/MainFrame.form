@@ -358,11 +358,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x639;&#x646;&#x635;&#x631; &#x62c;&#x62f;&#x64a;&#x62f;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAddBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="itemEdiBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x639;&#x646;&#x627;&#x635;&#x631;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemEdiBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="printItemsInfoBtn">
               <Properties>

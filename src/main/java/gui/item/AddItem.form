@@ -6,9 +6,6 @@
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="new javax.swing.ImageIcon(this.getClass().getClassLoader().getResource(&quot;img/Roda.jpg&quot;)).getImage()" type="code"/>
     </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="null"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="null"/>
     </Property>
@@ -98,7 +95,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x635;&#x641; &#x62c;&#x62f;&#x64a;&#x62f;"/>
+            <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x639;&#x646;&#x635;&#x631; &#x62c;&#x62f;&#x64a;&#x62f;"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -121,26 +118,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="contentTitleLbl" alignment="0" pref="368" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="addItemBtn" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="itemNameTf" pref="210" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="itemPriceSp" min="-2" pref="210" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="courseNameTf" pref="210" max="32767" attributes="0"/>
-                              <Component id="teacherNameTf" max="32767" attributes="0"/>
-                              <Component id="yearCB" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="daysLbl1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="daysLbl2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="courseNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                          <Component id="addCourseBtn" min="-2" pref="150" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="itemPriceLbl" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemDescLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -153,21 +145,21 @@
                   <Component id="contentTitleLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="courseNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="itemNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="daysLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="teacherNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="itemPriceLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemPriceSp" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="daysLbl2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="yearCB" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="itemDescLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="addCourseBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="addItemBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -183,10 +175,10 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x645;&#x639;&#x644;&#x648;&#x645;&#x627;&#x62a; &#x627;&#x644;&#x635;&#x641; &#x627;&#x644;&#x62c;&#x62f;&#x64a;&#x62f;"/>
+            <Property name="text" type="java.lang.String" value="&#x645;&#x639;&#x644;&#x648;&#x645;&#x627;&#x62a; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; &#x627;&#x644;&#x62c;&#x62f;&#x64a;&#x62f;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="addCourseBtn">
+        <Component class="javax.swing.JButton" name="addItemBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -197,10 +189,10 @@
             <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCourseBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addItemBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="courseNameLbl">
+        <Component class="javax.swing.JLabel" name="itemNameLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -208,15 +200,15 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x635;&#x641; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="courseNameTf">
+        <Component class="javax.swing.JTextField" name="itemNameTf">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="daysLbl1">
+        <Component class="javax.swing.JLabel" name="itemPriceLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -224,15 +216,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x645;&#x62f;&#x631;&#x633;&#x629; :"/>
+            <Property name="text" type="java.lang.String" value="&#x633;&#x639;&#x631; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="teacherNameTf">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="daysLbl2">
+        <Component class="javax.swing.JLabel" name="itemDescLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -240,23 +227,33 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x633;&#x646; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x648;&#x635;&#x641; :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="yearCB">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="&#x633;&#x646; &#x645;&#x62e;&#x62a;&#x644;&#x641;"/>
-                <StringItem index="1" value="&#x628;&#x633;&#x62a;&#x627;&#x646;"/>
-                <StringItem index="2" value="&#x62a;&#x645;&#x647;&#x64a;&#x62f;&#x64a;"/>
-              </StringArray>
-            </Property>
-          </Properties>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="((javax.swing.JLabel)yearCB.getRenderer()).setHorizontalAlignment(javax.swing.JLabel.RIGHT);"/>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="itemDescTa">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="itemDescTa.setComponentOrientation(java.awt.ComponentOrientation.RIGHT_TO_LEFT);"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JSpinner" name="itemPriceSp">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.SpinnerNumberModel(0.0,0,1000,1)" type="code"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

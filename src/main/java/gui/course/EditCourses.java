@@ -32,10 +32,10 @@ public class EditCourses extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         courseButtonsPnl = new javax.swing.JPanel();
-        setName = new javax.swing.JButton();
-        setTeacherName = new javax.swing.JButton();
-        setYear = new javax.swing.JButton();
-        displayCourseStudents = new javax.swing.JButton();
+        setNameBtn = new javax.swing.JButton();
+        setTeacherNameBtn = new javax.swing.JButton();
+        setYearBtn = new javax.swing.JButton();
+        displayCourseStudentsBtn = new javax.swing.JButton();
         deleteCourseBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
@@ -144,35 +144,35 @@ public class EditCourses extends javax.swing.JFrame {
         courseButtonsPnl.setAlignmentX(0.0F);
         courseButtonsPnl.setAlignmentY(0.0F);
 
-        setName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setName.setText("تعديل اسم الصف");
-        setName.addActionListener(new java.awt.event.ActionListener() {
+        setNameBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setNameBtn.setText("تعديل اسم الصف");
+        setNameBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setNameActionPerformed(evt);
+                setNameBtnActionPerformed(evt);
             }
         });
 
-        setTeacherName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setTeacherName.setText("تعديل اسم المدرسة");
-        setTeacherName.addActionListener(new java.awt.event.ActionListener() {
+        setTeacherNameBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setTeacherNameBtn.setText("تعديل اسم المدرسة");
+        setTeacherNameBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setTeacherNameActionPerformed(evt);
+                setTeacherNameBtnActionPerformed(evt);
             }
         });
 
-        setYear.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setYear.setText("تعديل السن");
-        setYear.addActionListener(new java.awt.event.ActionListener() {
+        setYearBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setYearBtn.setText("تعديل السن");
+        setYearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setYearActionPerformed(evt);
+                setYearBtnActionPerformed(evt);
             }
         });
 
-        displayCourseStudents.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayCourseStudents.setText("إظهار طلاب الصف");
-        displayCourseStudents.addActionListener(new java.awt.event.ActionListener() {
+        displayCourseStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        displayCourseStudentsBtn.setText("إظهار طلاب الصف");
+        displayCourseStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayCourseStudentsActionPerformed(evt);
+                displayCourseStudentsBtnActionPerformed(evt);
             }
         });
 
@@ -191,12 +191,12 @@ public class EditCourses extends javax.swing.JFrame {
             .addGroup(courseButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(setTeacherName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayCourseStudents, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                    .addComponent(setTeacherNameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayCourseStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
-                .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(setYear, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(setName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(setYearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(setNameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -208,12 +208,12 @@ public class EditCourses extends javax.swing.JFrame {
             .addGroup(courseButtonsPnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(setTeacherName)
-                    .addComponent(setName))
+                    .addComponent(setTeacherNameBtn)
+                    .addComponent(setNameBtn))
                 .addGap(15, 15, 15)
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(displayCourseStudents)
-                    .addComponent(setYear))
+                    .addComponent(displayCourseStudentsBtn)
+                    .addComponent(setYearBtn))
                 .addGap(15, 15, 15)
                 .addComponent(deleteCourseBtn)
                 .addGap(20, 20, 20))
@@ -287,30 +287,30 @@ public class EditCourses extends javax.swing.JFrame {
         updateTableAndDataPnl();
     }//GEN-LAST:event_coursesTblMouseClicked
 
-    private void setNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setNameActionPerformed
+    private void setNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setNameBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
-        String courseName = (String) JOptionPane.showInputDialog(rootPane, "اسم الصف الجديد :",
+        String courseName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للصف :",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null, selectedCourse.getName());
 
         if (courseName == null) {
             return;
         } else if (courseName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
-            setNameActionPerformed(evt);
+            setNameBtnActionPerformed(evt);
         }
 
         try {
             selectedCourse.setName(courseName);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة في تسمية الصف بهذا الاسم");
+            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تسمية الصف بهذا الاسم");
             System.err.println(ex);
         }
         updateTableAndDataPnl();
-    }//GEN-LAST:event_setNameActionPerformed
+    }//GEN-LAST:event_setNameBtnActionPerformed
 
-    private void setTeacherNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTeacherNameActionPerformed
+    private void setTeacherNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTeacherNameBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
@@ -322,7 +322,7 @@ public class EditCourses extends javax.swing.JFrame {
             return;
         } else if (teacherName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون اسم المدرسة فارغاً");
-            setTeacherNameActionPerformed(evt);
+            setTeacherNameBtnActionPerformed(evt);
         }
 
         try {
@@ -332,7 +332,7 @@ public class EditCourses extends javax.swing.JFrame {
             System.err.println(ex);
         }
         updateTableAndDataPnl();
-    }//GEN-LAST:event_setTeacherNameActionPerformed
+    }//GEN-LAST:event_setTeacherNameBtnActionPerformed
 
     private void deleteCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseBtnActionPerformed
         if (isBadSelection()) {
@@ -354,7 +354,7 @@ public class EditCourses extends javax.swing.JFrame {
         updateTableAndDataPnl();
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
-    private void displayCourseStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCourseStudentsActionPerformed
+    private void displayCourseStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCourseStudentsBtnActionPerformed
         GUI_Util.link_frame_to_button(GUI_Util.displayItemsInJTable((table) -> {
             try {
                 table.setModel(selectedCourse.getStudentsAsTable());
@@ -362,15 +362,16 @@ public class EditCourses extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "حدث خطأ أثناء إظهار طلاب الصف");
                 System.err.println(ex);
             }
-        }), displayCourseStudents);
-    }//GEN-LAST:event_displayCourseStudentsActionPerformed
+        }), displayCourseStudentsBtn);
+    }//GEN-LAST:event_displayCourseStudentsBtnActionPerformed
 
-    private void setYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setYearActionPerformed
+    private void setYearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setYearBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.link_frame_to_button(GUI_Util.promoteComboBox("تغيير سن الصف", "السن الجديد للصف سيكون :",
-                "تعيين السن الجديد", CoursesUtil.getYearsAsComboBox(), (year) -> {
+        GUI_Util.link_frame_to_button(GUI_Util.promoteComboBox("تغيير سن الصف",
+                "السن الجديد للصف سيكون :", "تعيين السن الجديد",
+                CoursesUtil.getYearsAsComboBox(), (year) -> {
             if ("أريد إدخال نصاً مختلفاً".equals(year)) {
                 year = (String) JOptionPane.showInputDialog(rootPane, "السن الجديد :",
                         "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null, null);
@@ -385,8 +386,8 @@ public class EditCourses extends javax.swing.JFrame {
                 System.out.println(ex);
             }
             return false;
-        }), setYear);
-    }//GEN-LAST:event_setYearActionPerformed
+        }), setYearBtn);
+    }//GEN-LAST:event_setYearBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel courseButtonsPnl;
@@ -398,15 +399,15 @@ public class EditCourses extends javax.swing.JFrame {
     private javax.swing.JScrollPane coursesSPnl;
     private javax.swing.JTable coursesTbl;
     private javax.swing.JButton deleteCourseBtn;
-    private javax.swing.JButton displayCourseStudents;
+    private javax.swing.JButton displayCourseStudentsBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JButton setName;
-    private javax.swing.JButton setTeacherName;
-    private javax.swing.JButton setYear;
+    private javax.swing.JButton setNameBtn;
+    private javax.swing.JButton setTeacherNameBtn;
+    private javax.swing.JButton setYearBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables
@@ -429,11 +430,6 @@ public class EditCourses extends javax.swing.JFrame {
             courseTeacherTf.setText(selectedCourse.getTeacherName());
             courseYearTf.setText(selectedCourse.getYear());
         }
-        /*
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        jTable1.setDefaultRenderer(String.class, centerRenderer);  
-         */
     }
 
     private boolean isBadSelection() {

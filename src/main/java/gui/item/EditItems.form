@@ -29,11 +29,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="courseButtonsPnl" max="32767" attributes="0"/>
-                  <Component id="courseDataPnl" max="32767" attributes="0"/>
+                  <Component id="itemButtonsPnl" max="32767" attributes="0"/>
+                  <Component id="itemDataPnl" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="coursesSPnl" pref="597" max="32767" attributes="0"/>
+              <Component id="itemsSPnl" pref="594" max="32767" attributes="0"/>
           </Group>
           <Component id="titlePnl" max="32767" attributes="0"/>
       </Group>
@@ -45,25 +45,25 @@
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="courseDataPnl" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemDataPnl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="courseButtonsPnl" min="-2" max="-2" attributes="0"/>
+                      <Component id="itemButtonsPnl" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="coursesSPnl" pref="0" max="32767" attributes="0"/>
+                  <Component id="itemsSPnl" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="coursesSPnl">
+    <Container class="javax.swing.JScrollPane" name="itemsSPnl">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="coursesTbl">
+        <Component class="javax.swing.JTable" name="itemsTbl">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -77,12 +77,12 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="coursesTblMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsTblMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="courseDataPnl">
+    <Container class="javax.swing.JPanel" name="itemDataPnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -102,12 +102,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                          <Component id="courseTeacherTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
-                          <Component id="courseIdTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
-                          <Component id="courseNameTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="itemPriceTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                          <Component id="itemIdTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                          <Component id="itemNameTf" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="courseYearTf" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -125,23 +125,23 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseIdTf" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="itemIdTf" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseNameTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="itemNameTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseTeacherTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="itemPriceTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseYearTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -149,25 +149,19 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="courseIdTf">
+        <Component class="javax.swing.JTextField" name="itemIdTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="courseNameTf">
+        <Component class="javax.swing.JTextField" name="itemNameTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="courseTeacherTf">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="courseYearTf">
+        <Component class="javax.swing.JTextField" name="itemPriceTf">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="4"/>
@@ -182,7 +176,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x631;&#x642;&#x645; &#x627;&#x644;&#x635;&#x641; :"/>
+            <Property name="text" type="java.lang.String" value="&#x631;&#x642;&#x645; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -194,7 +188,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x635;&#x641; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -206,7 +200,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x645;&#x62f;&#x631;&#x633;&#x629; :"/>
+            <Property name="text" type="java.lang.String" value="&#x633;&#x639;&#x631; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631; :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -218,12 +212,32 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x633;&#x646; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x648;&#x635;&#x641; :"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="itemDescTa">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="itemDescTa.setComponentOrientation(java.awt.ComponentOrientation.RIGHT_TO_LEFT);"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="courseButtonsPnl">
+    <Container class="javax.swing.JPanel" name="itemButtonsPnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -245,20 +259,20 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="setTeacherNameBtn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="displayCourseStudentsBtn" alignment="0" pref="125" max="32767" attributes="0"/>
+                      <Component id="setPriceBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="displayItemStudentsBtn" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="setYearBtn" pref="114" max="32767" attributes="0"/>
+                      <Component id="setDescBtn" pref="114" max="32767" attributes="0"/>
                       <Component id="setNameBtn" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="deleteCourseBtn" min="-2" pref="114" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="deleteItemBtn" min="-2" pref="114" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -267,16 +281,16 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="setTeacherNameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="setPriceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="setNameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="displayCourseStudentsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="setYearBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayItemStudentsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="setDescBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="deleteCourseBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="deleteItemBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -288,54 +302,54 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x627;&#x633;&#x645; &#x627;&#x644;&#x635;&#x641;"/>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x627;&#x633;&#x645; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setNameBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="setTeacherNameBtn">
+        <Component class="javax.swing.JButton" name="setPriceBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x627;&#x633;&#x645; &#x627;&#x644;&#x645;&#x62f;&#x631;&#x633;&#x629;"/>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x633;&#x639;&#x631; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setTeacherNameBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setPriceBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="setYearBtn">
+        <Component class="javax.swing.JButton" name="setDescBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x627;&#x644;&#x633;&#x646;"/>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x627;&#x644;&#x648;&#x635;&#x641;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setYearBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setDescBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="displayCourseStudentsBtn">
+        <Component class="javax.swing.JButton" name="displayItemStudentsBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x625;&#x638;&#x647;&#x627;&#x631; &#x637;&#x644;&#x627;&#x628; &#x627;&#x644;&#x635;&#x641;"/>
+            <Property name="text" type="java.lang.String" value="&#x625;&#x638;&#x647;&#x627;&#x631; &#x637;&#x644;&#x627;&#x628; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayCourseStudentsBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayItemStudentsBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="deleteCourseBtn">
+        <Component class="javax.swing.JButton" name="deleteItemBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x62d;&#x630;&#x641; &#x627;&#x644;&#x635;&#x641;"/>
+            <Property name="text" type="java.lang.String" value="&#x62d;&#x630;&#x641; &#x627;&#x644;&#x639;&#x646;&#x635;&#x631;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCourseBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteItemBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -388,7 +402,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x635;&#x641;&#x648;&#x641;"/>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x639;&#x646;&#x627;&#x635;&#x631;"/>
           </Properties>
         </Component>
       </SubComponents>

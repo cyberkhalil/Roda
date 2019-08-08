@@ -4,6 +4,8 @@ import com.alee.laf.WebLookAndFeel;
 import com.alee.utils.FileUtils;
 import gui.course.AddCourse;
 import gui.course.EditCourses;
+import gui.item.AddItem;
+import gui.item.EditItems;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
@@ -161,8 +163,18 @@ public class MainFrame extends javax.swing.JFrame {
         itemLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         itemAddBtn.setText("إضافة عنصر جديد");
+        itemAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAddBtnActionPerformed(evt);
+            }
+        });
 
         itemEdiBtn.setText("تعديل بيانات العناصر");
+        itemEdiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEdiBtnActionPerformed(evt);
+            }
+        });
 
         printItemsInfoBtn.setText("طباعة بيانات العناصر");
         printItemsInfoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -432,6 +444,18 @@ public class MainFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         GUI_Util.link_frame_to_button(frame, editCoursesBtn);
     }//GEN-LAST:event_editCoursesBtnActionPerformed
+
+    private void itemAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAddBtnActionPerformed
+        AddItem frame = new AddItem();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, itemAddBtn);
+    }//GEN-LAST:event_itemAddBtnActionPerformed
+
+    private void itemEdiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEdiBtnActionPerformed
+        EditItems frame = new EditItems();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, itemEdiBtn);
+    }//GEN-LAST:event_itemEdiBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel contentTitleLbl;
