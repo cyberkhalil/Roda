@@ -2,12 +2,12 @@ package util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
 public class Statics {
@@ -117,6 +117,22 @@ public class Statics {
         }
         s.getWorkbook().write(fos);
         fos.close();
+    }
+
+    public static boolean cellIsNull0OrBlank(Cell c) {
+        if (c == null) {
+            return true;
+        }
+        switch (c.getCellType()) {
+            case BLANK:
+                return true;
+            case NUMERIC:
+                return c.getNumericCellValue() == 0;
+            case STRING:
+                return c.getRichStringCellValue().getString().trim().isEmpty();
+            default:
+                return false;
+        }
     }
 
     private Statics() {

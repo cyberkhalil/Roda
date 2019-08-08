@@ -1,12 +1,11 @@
 package util.gui;
 
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -160,6 +159,12 @@ public class GUI_Util {
         promoteFrame.daysCB7.setSelected(defaultDays.contains("Fr"));
         promoteFrame.setVisible(true);
         return promoteFrame;
+    }
+
+    public static void setUpRodaImgLbl(JLabel imgLbl) {
+        imgLbl.setIcon(new ImageIcon(new ImageIcon(new GUI_Util().getClass().getClassLoader()
+                .getResource("img/Roda.jpg")).getImage().getScaledInstance(imgLbl.getWidth(),
+                imgLbl.getHeight(), Image.SCALE_DEFAULT)));
     }
 
     public static abstract interface DoSomethingWithSpinner {

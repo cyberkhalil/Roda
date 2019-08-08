@@ -3,7 +3,8 @@ package core.course;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Row;
-import util.Statics;
+import static util.Statics.COURSES_SHEET;
+import static util.Statics.updateSheet;
 
 public class Course {
 
@@ -11,11 +12,12 @@ public class Course {
     private String name;
     private String teacherName;
     private String year;
-    private Row row;
-    private final int columnCount = 4;
+
+    private final Row row;
+    public final static int COLUMN_COUNT = 4;
 
     public Course(int id) {
-        this.row = Statics.COURSES_SHEET.getRow(id + 1);
+        this.row = COURSES_SHEET.getRow(id + 1);
         this.id = (int) row.getCell(0).getNumericCellValue();
         this.name = row.getCell(1).getRichStringCellValue().getString();
         this.teacherName = row.getCell(2).getRichStringCellValue().getString();
@@ -38,33 +40,9 @@ public class Course {
         return year;
     }
 
-    public void setName(String name) throws IOException {
-        this.row.getCell(1).setCellValue(name);
-        this.name = name;
-        Statics.updateSheet(Statics.COURSES_SHEET);
-    }
-
-    public void setTeacherName(String teacherName) throws IOException {
-        this.row.getCell(2).setCellValue(teacherName);
-        this.teacherName = teacherName;
-        Statics.updateSheet(Statics.COURSES_SHEET);
-    }
-
-    public void setYear(String year) throws IOException {
-        this.row.getCell(3).setCellValue(year);
-        this.year = year;
-        Statics.updateSheet(Statics.COURSES_SHEET);
-    }
-
-    public void delete() throws IOException {
-        for (int i = 0; i < columnCount; i++) {
-            this.row.getCell(i).setBlank();
-        }
-        Statics.updateSheet(Statics.COURSES_SHEET);
-        this.row = null;
-        this.name = null;
-        this.teacherName = null;
-        this.year = null;
+    public int getStudentsNumber() {
+        // TODO implement this method
+        throw new UnsupportedOperationException("This operation is not supported yet");
     }
 
     public DefaultTableModel getStudentsAsTable() {
@@ -100,4 +78,35 @@ public class Course {
          */
         throw new UnsupportedOperationException("This operation is not supported yet");
     }
+
+    public void setName(String name) throws IOException {
+        this.row.getCell(1).setCellValue(name);
+        updateSheet(COURSES_SHEET);
+        this.name = name;
+    }
+
+    public void setTeacherName(String teacherName) throws IOException {
+        this.row.getCell(2).setCellValue(teacherName);
+        updateSheet(COURSES_SHEET);
+        this.teacherName = teacherName;
+    }
+
+    public void setYear(String year) throws IOException {
+        this.row.getCell(3).setCellValue(year);
+        updateSheet(COURSES_SHEET);
+        this.year = year;
+    }
+
+    public void delete() throws IOException {
+        for (int i = 0; i < COLUMN_COUNT; i++) {
+            this.row.getCell(i).setBlank();
+        }
+        this.row.setZeroHeight(true);
+        updateSheet(COURSES_SHEET);
+        this.name = null;
+        this.teacherName = null;
+        this.year = null;
+        // TODO remove from StudentCourses
+    }
+
 }

@@ -20,7 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-        setUpImg();
+        GUI_Util.setUpRodaImgLbl(imgLbl);
         for (String availableYear : Statics.getAvailableYears()) {
             yearCB.addItem(availableYear);
         }
@@ -476,12 +476,6 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new MainFrame().setVisible(true);
         });
-    }
-
-    private void setUpImg() {
-        imgLbl.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(this.getClass().
-                getClassLoader().getResource("img/Roda.jpg")).getImage().getScaledInstance(
-                imgLbl.getWidth(), imgLbl.getHeight(), java.awt.Image.SCALE_DEFAULT)));
     }
 
 }

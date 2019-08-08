@@ -12,13 +12,8 @@ public class EditCourses extends javax.swing.JFrame {
 
     public EditCourses() {
         initComponents();
-        setUpImg();
-        try {
-            this.coursesTbl.setModel(CoursesUtil.getCoursesAsTable());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ أثناء إظهار الصفوف !");
-            System.err.println(ex);
-        }
+        GUI_Util.setUpRodaImgLbl(imgLbl);
+        updateTableAndDataPnl();
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +42,7 @@ public class EditCourses extends javax.swing.JFrame {
         titleLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(this.getClass().getClassLoader().getResource("img/Roda.jpg")).getImage());
         setResizable(false);
 
         coursesTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -58,6 +54,7 @@ public class EditCourses extends javax.swing.JFrame {
             }
         ));
         coursesTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        coursesTbl.setSurrendersFocusOnKeystroke(true);
         coursesTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 coursesTblMouseClicked(evt);
@@ -390,28 +387,7 @@ public class EditCourses extends javax.swing.JFrame {
             return false;
         }), setYear);
     }//GEN-LAST:event_setYearActionPerformed
-    /* if (isBadSelection()) {
-            return;
-        }
-        try {
-            link_frame_to_button(promoteComboBox("تغيير سن الصف", "السن الجديد للصف سيكون :",
-                    "تعيين السن الجديد", buildComboBoxModel(getStudentsIdAndName()), (AddedById) -> {
-                try {
-                    selectedStudent.setAddedBy(Integer.parseInt(AddedById.substring(1,
-                            AddedById.indexOf(")"))));
-                    updateTable();
-                    JOptionPane.showMessageDialog(rootPane, "Student AddedBy change successfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
-                    printEx(ex);
-                }
-                return false;
-            }), setAddedByBtn);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
-            printEx(ex);
-        }*/
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel courseButtonsPnl;
     private javax.swing.JPanel courseDataPnl;
@@ -453,6 +429,11 @@ public class EditCourses extends javax.swing.JFrame {
             courseTeacherTf.setText(selectedCourse.getTeacherName());
             courseYearTf.setText(selectedCourse.getYear());
         }
+        /*
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jTable1.setDefaultRenderer(String.class, centerRenderer);  
+         */
     }
 
     private boolean isBadSelection() {
@@ -461,11 +442,5 @@ public class EditCourses extends javax.swing.JFrame {
             return true;
         }
         return false;
-    }
-
-    private void setUpImg() {
-        imgLbl.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(this.getClass().
-                getClassLoader().getResource("img/Roda.jpg")).getImage().getScaledInstance(
-                imgLbl.getWidth(), imgLbl.getHeight(), java.awt.Image.SCALE_DEFAULT)));
     }
 }

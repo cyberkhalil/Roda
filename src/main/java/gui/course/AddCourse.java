@@ -2,12 +2,13 @@ package gui.course;
 
 import core.course.CoursesUtil;
 import javax.swing.JOptionPane;
+import util.gui.GUI_Util;
 
 public class AddCourse extends javax.swing.JFrame {
 
     public AddCourse() {
         initComponents();
-        setUpImg();
+        GUI_Util.setUpRodaImgLbl(imgLbl);
         yearCB.setSelectedIndex(1);
     }
 
@@ -192,9 +193,4 @@ public class AddCourse extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> yearCB;
     // End of variables declaration//GEN-END:variables
 
-    private void setUpImg() {
-        imgLbl.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(this.getClass().
-                getClassLoader().getResource("img/Roda.jpg")).getImage().getScaledInstance(
-                imgLbl.getWidth(), imgLbl.getHeight(), java.awt.Image.SCALE_DEFAULT)));
-    }
 }
