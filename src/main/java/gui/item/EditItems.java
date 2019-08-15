@@ -286,7 +286,7 @@ public class EditItems extends javax.swing.JFrame {
             selectedItem = new Item(new Double(tableModel.getValueAt(i, 0).toString())
                     .intValue());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ في الوصول لهذا الصف!");
+            JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ في الوصول لهذا العنصر!");
             System.err.println(ex);
         }
         updateTableAndDataPnl();

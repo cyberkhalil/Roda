@@ -82,7 +82,7 @@ public class GUI_Util {
     public static ImageIcon getImageIconFromCellString(String s) {
         if (isImageCellString(s)) {
             String imgName = s.substring(5, s.length() - 1);
-            return new ImageIcon(Statics.IMAGES_PATH + File.pathSeparator + imgName);
+            return new ImageIcon(imgName);
         }
         return new ImageIcon(Statics.NULL_IMAGE_FILE.toString());
     }
@@ -287,6 +287,10 @@ public class GUI_Util {
 
     public static ImageIcon setImageIconToLabelSize(ImageIcon ic, JLabel lbl) {
         return new ImageIcon(setImageToSize(ic.getImage(), lbl.getWidth(), lbl.getHeight()));
+    }
+
+    public static ImageIcon setImageIconToSize(ImageIcon ic, int width, int height) {
+        return new ImageIcon(setImageToSize(ic.getImage(), width, height));
     }
 
     public static abstract interface DoSomethingWithSpinner {

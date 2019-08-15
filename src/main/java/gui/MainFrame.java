@@ -7,6 +7,7 @@ import gui.course.EditCourses;
 import gui.item.AddItem;
 import gui.item.EditItems;
 import gui.student.AddStudent;
+import gui.student.EditStudents;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
@@ -128,6 +129,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         editStudentsBtn.setText("تعديل بيانات الطلاب");
+        editStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editStudentsBtnActionPerformed(evt);
+            }
+        });
 
         printStudentsInfoBtn.setText("طباعة بيانات الطلاب");
         printStudentsInfoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +477,12 @@ public class MainFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         GUI_Util.link_frame_to_button(frame, studentAddBtn);
     }//GEN-LAST:event_studentAddBtnActionPerformed
+
+    private void editStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStudentsBtnActionPerformed
+        EditStudents frame = new EditStudents();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, editStudentsBtn);
+    }//GEN-LAST:event_editStudentsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel contentTitleLbl;

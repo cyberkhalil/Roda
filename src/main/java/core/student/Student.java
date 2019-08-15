@@ -45,6 +45,7 @@ public class Student {
         this.citizenOrRefugee = row.getCell(11).getRichStringCellValue().getString();
         this.address = row.getCell(12).getRichStringCellValue().getString();
         this.courseId = (int) row.getCell(13).getNumericCellValue();
+        this.image = row.getCell(14).getRichStringCellValue().getString();
     }
 
     public int getId() {

@@ -44,7 +44,7 @@ public class AddStudent extends javax.swing.JFrame {
                         this.studentCitizenOrRefugeeTf.setEnabled(rb.isSelected());
                     }
                     if (rb.isSelected()) {
-                        this.studentCitizenOrRefugeeTf.setText("(" + rb.getText() + ")");
+                        this.studentCitizenOrRefugeeTf.setText(rb.getText());
                     }
                 });
             }
@@ -408,7 +408,6 @@ public class AddStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
-
         if (GUI_Util.AnyTextBetweenBrackets(studentFirstNameTf, studentFamilyNameTf,
                 studentFatherNameTf)) {
             JOptionPane.showMessageDialog(rootPane,

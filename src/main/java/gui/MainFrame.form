@@ -279,6 +279,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644; &#x628;&#x64a;&#x627;&#x646;&#x627;&#x62a; &#x627;&#x644;&#x637;&#x644;&#x627;&#x628;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editStudentsBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="printStudentsInfoBtn">
               <Properties>
