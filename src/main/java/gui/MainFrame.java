@@ -6,6 +6,7 @@ import gui.course.AddCourse;
 import gui.course.EditCourses;
 import gui.item.AddItem;
 import gui.item.EditItems;
+import gui.student.AddStudent;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         GUI_Util.setUpRodaImgLbl(imgLbl);
         for (String availableYear : Statics.getAvailableYears()) {
+            if (availableYear.equals("Images")) {
+                continue;
+            }
             yearCB.addItem(availableYear);
         }
         yearCB.setSelectedIndex(1);
@@ -117,6 +121,11 @@ public class MainFrame extends javax.swing.JFrame {
         studentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         studentAddBtn.setText("إضافة طالب جديد");
+        studentAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAddBtnActionPerformed(evt);
+            }
+        });
 
         editStudentsBtn.setText("تعديل بيانات الطلاب");
 
@@ -456,6 +465,12 @@ public class MainFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         GUI_Util.link_frame_to_button(frame, itemEdiBtn);
     }//GEN-LAST:event_itemEdiBtnActionPerformed
+
+    private void studentAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAddBtnActionPerformed
+        AddStudent frame = new AddStudent();
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, studentAddBtn);
+    }//GEN-LAST:event_studentAddBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel contentTitleLbl;

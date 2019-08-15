@@ -68,7 +68,7 @@ public class Statics {
         };
         PROGRAM_FILES = new File[]{
             STUDENTS_FILE, ITEMS_FILE, COURSES_FILE, STUDENTS_ITEMS_FILE, STUDENTS_PURCHASES_FILE,
-             NULL_IMAGE_FILE
+            NULL_IMAGE_FILE
         };
         PROGRAM_SHEET_FILES = new File[]{
             STUDENTS_FILE, ITEMS_FILE, COURSES_FILE, STUDENTS_ITEMS_FILE, STUDENTS_PURCHASES_FILE
@@ -138,6 +138,10 @@ public class Statics {
             default:
                 return false;
         }
+    }
+
+    public static boolean stringBetweenBrackets(String s) {
+        return s.startsWith("(") && s.endsWith(")");
     }
 
     private Statics() {

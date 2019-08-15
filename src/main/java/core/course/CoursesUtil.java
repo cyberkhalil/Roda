@@ -19,7 +19,7 @@ public class CoursesUtil {
         int preValue = (int) c.getNumericCellValue();
         int max = preValue + 2;
         Row CourseRow = COURSES_SHEET.createRow(max);
-        CourseRow.createCell(0).setCellValue(preValue + 1);
+        CourseRow.createCell(0).setCellValue(preValue + 1); //id
         CourseRow.createCell(1).setCellValue(name);
         CourseRow.createCell(2).setCellValue(teacherName);
         CourseRow.createCell(3).setCellValue(year);
@@ -28,6 +28,18 @@ public class CoursesUtil {
     }
 
     public static DefaultTableModel getCoursesAsTable() {
+        return GUI_Util.buildTableModel(getCoursesAsRows(), Course.COLUMN_COUNT);
+    }
+
+    public static DefaultComboBoxModel getYearsAsComboBox() {
+        return new DefaultComboBoxModel(new String[]{"أريد إدخال نصاً مختلفاً", "بستان", "تمهيدي"});
+    }
+
+    public static DefaultComboBoxModel getCoursesAsComboBox() {
+        return GUI_Util.buildComboBoxModel(getCoursesAsRows(), 0, 1);
+    }
+
+    private static ArrayList<Row> getCoursesAsRows() {
         Cell c = COURSES_SHEET.getRow(0).getCell(1);
         int max = (int) c.getNumericCellValue() + 2;
         ArrayList<Row> rows = new ArrayList<>();
@@ -38,16 +50,7 @@ public class CoursesUtil {
             }
             rows.add(row);
         }
-        return GUI_Util.buildTableModel(rows, Course.COLUMN_COUNT);
-    }
-
-    public static DefaultComboBoxModel getYearsAsComboBox() {
-        return new DefaultComboBoxModel(new String[]{"أريد إدخال نصاً مختلفاً", "بستان", "تمهيدي"});
-    }
-
-    public static DefaultComboBoxModel getCoursesAsComboBox() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This opertaion is not supported yet");
+        return rows;
     }
 
     private CoursesUtil() {

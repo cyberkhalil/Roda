@@ -6,11 +6,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +19,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import util.Random;
@@ -49,6 +50,31 @@ public class GUI_Util {
         };
     }
 
+    public static DefaultComboBoxModel buildComboBoxModel(ArrayList<Row> rows, int idColumnNumber,
+            int nameColumnNumber) {
+        String[] options = new String[rows.size()];
+        for (int i = 1; i < rows.size(); i++) {
+            options[i - 1]
+                    = rows.get(i).getCell(nameColumnNumber).getRichStringCellValue().getString()
+                    + " (id=" + (int) rows.get(i).getCell(idColumnNumber).getNumericCellValue()
+                    + ")";
+        }
+        return new DefaultComboBoxModel<>(options);
+    }
+
+    public static String parseIdFromComboBoxOption(String option) {
+        if (option == null || option.trim().isEmpty() || !option.contains("(")
+                || !option.contains(")")) {
+            return "0";
+        }
+        int i1 = option.lastIndexOf("(");
+        int i2 = option.lastIndexOf(")");
+        if (i2 < i1) {
+            return "0";
+        }
+        return option.substring(i1 + 1, i2 - 1);
+    }
+
     public static ImageIcon getImageIconFromCell(Cell cell) {
         return getImageIconFromCellString(cell.getStringCellValue());
     }
@@ -63,12 +89,17 @@ public class GUI_Util {
 
     public static String setImageIconAsStringToCell(String imgPath) throws IOException {
         File input = new File(imgPath);
-        File output = new File(Statics.IMAGES_PATH, Random.generateRandomString(10) + ".jpg");
-        BufferedImage image = ImageIO.read(input);
-        BufferedImage outputImg = new BufferedImage(image.getWidth(), image.getHeight(),
-                BufferedImage.TYPE_INT_RGB);
-        outputImg.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
-        ImageIO.write(outputImg, "jpg", output);
+        File output;
+        if (!input.exists()) {
+            output = Statics.NULL_IMAGE_FILE;
+        } else {
+            output = new File(Statics.IMAGES_PATH, Random.generateRandomString(10) + ".jpg");
+            BufferedImage image = ImageIO.read(input);
+            BufferedImage outputImg = new BufferedImage(image.getWidth(), image.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+            outputImg.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
+            ImageIO.write(outputImg, "jpg", output);
+        }
         return "{img:" + output + "}";
     }
 
@@ -78,6 +109,48 @@ public class GUI_Util {
 
     public static boolean isImageCellString(String s) {
         return s.startsWith("{img:") && s.endsWith("}");
+    }
+
+    public static boolean TextBetweenBrackets(JTextComponent tc) {
+        return Statics.stringBetweenBrackets(tc.getText());
+    }
+
+    public static String getTextOrEmpty(JTextComponent tc) {
+        if (tc.getText() == null || Statics.stringBetweenBrackets(tc.getText())) {
+            return "";
+        } else {
+            return tc.getText();
+        }
+    }
+
+    public static boolean AllTextBetweenBrackets(JTextComponent... tc) {
+        for (JTextComponent jTextComponent : tc) {
+            if (!Statics.stringBetweenBrackets(jTextComponent.getText())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean AnyTextBetweenBrackets(JTextComponent... tc) {
+        for (JTextComponent jTextComponent : tc) {
+            if (Statics.stringBetweenBrackets(jTextComponent.getText())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void removeTextOnFocusGained(JTextComponent tc) {
+        if (TextBetweenBrackets(tc)) {
+            tc.setText("");
+        }
+    }
+
+    public static void setTextOnFocusLost(JTextComponent tc, String text) {
+        if (tc.getText().isEmpty()) {
+            tc.setText(text);
+        }
     }
 
     public static void link_frame_to_button(JFrame frame, JButton button) {
@@ -202,9 +275,18 @@ public class GUI_Util {
     }
 
     public static void setUpRodaImgLbl(JLabel imgLbl) {
-        imgLbl.setIcon(new ImageIcon(new ImageIcon(new GUI_Util().getClass().getClassLoader()
-                .getResource("img/Roda.jpg")).getImage().getScaledInstance(imgLbl.getWidth(),
-                imgLbl.getHeight(), Image.SCALE_DEFAULT)));
+        imgLbl.setIcon(setImageIconToLabelSize(
+                new ImageIcon(
+                        new GUI_Util().getClass().getClassLoader().getResource("img/Roda.jpg")),
+                imgLbl));
+    }
+
+    public static Image setImageToSize(Image i, int width, int heigth) {
+        return i.getScaledInstance(width, heigth, Image.SCALE_DEFAULT);
+    }
+
+    public static ImageIcon setImageIconToLabelSize(ImageIcon ic, JLabel lbl) {
+        return new ImageIcon(setImageToSize(ic.getImage(), lbl.getWidth(), lbl.getHeight()));
     }
 
     public static abstract interface DoSomethingWithSpinner {

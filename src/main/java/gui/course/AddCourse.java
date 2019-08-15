@@ -168,6 +168,7 @@ public class AddCourse extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "يجب أن تضع اسماً للصف !");
             return;
         }
+        // TODO do somthing when "سن مختلف"
         try {
             CoursesUtil.createCourse(courseNameTf.getText(), teacherNameTf.getText(),
                     yearCB.getSelectedItem().toString());
