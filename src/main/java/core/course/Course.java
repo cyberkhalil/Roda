@@ -1,6 +1,9 @@
 package core.course;
 
+import core.student.Student;
+import core.student.StudentsUtil;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Row;
 import static util.Statics.COURSES_SHEET;
@@ -41,8 +44,12 @@ public class Course {
     }
 
     public int getStudentsNumber() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
+        ArrayList<Student> students = StudentsUtil.getStudents();
+        students.stream().filter(
+                (student) -> (student.getCourseId() == id)).forEachOrdered((student) -> {
+                    students.remove(student);
+                });
+        return students.size();
     }
 
     public DefaultTableModel getStudentsAsTable() {
@@ -106,7 +113,12 @@ public class Course {
         this.name = null;
         this.teacherName = null;
         this.year = null;
-        // TODO remove from StudentCourses
+        ArrayList<Student> students = StudentsUtil.getStudents();
+        for (Student s : students) {
+            if (s.getCourseId() == id) {
+                s.setCourse(0);
+            }
+        }
     }
 
 }

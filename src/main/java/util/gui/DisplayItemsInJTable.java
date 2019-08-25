@@ -1,5 +1,7 @@
 package util.gui;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import util.gui.GUI_Util.UpdateTableOperation;
 
 class DisplayItemsInJTable extends javax.swing.JFrame {
@@ -140,19 +142,19 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshTableBtnActionPerformed
 
     private void printTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTableBtnActionPerformed
-// TODO print excel file
-//        try {
-//            JFileChooser f = new JFileChooser();
-//            f.setFileSelectionMode(JFileChooser.FILES_ONLY);
-//            f.showSaveDialog(rootPane);
-//            if (f.getSelectedFile() == null) {
-//                return;
-//            }
-//            PDF_Util.printjTable(itemsTbl, f.getSelectedFile().getPath());
-//            JOptionPane.showMessageDialog(rootPane, "Printed successfully");
-//        } catch (DocumentException | HeadlessException | IOException ex) {
-//            JOptionPane.showMessageDialog(rootPane, ex);
-//        }
+        // TODO print excel file
+        try {
+            JSystemFileChooser f = new JSystemFileChooser();
+            f.setFileSelectionMode(JSystemFileChooser.FILES_ONLY);
+            f.showSaveDialog(rootPane);
+            if (f.getSelectedFile() == null) {
+                return;
+            }
+            GUI_Util.writeToExcell(itemsTbl, f.getSelectedFile().getPath());
+            JOptionPane.showMessageDialog(rootPane, "تمت الطباعة بنجاح");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ أثناء عملية الطباعة");
+        }
     }//GEN-LAST:event_printTableBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

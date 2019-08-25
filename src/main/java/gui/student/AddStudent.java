@@ -431,8 +431,12 @@ public class AddStudent extends javax.swing.JFrame {
         String address = GUI_Util.getTextOrEmpty(studentAddressTf);
         int courseId = 0;
         if (studentCourseEnabled.isSelected()) {
-            courseId = new Integer(GUI_Util.parseIdFromComboBoxOption(
-                    studentCourseCb.getSelectedItem().toString()));
+            try {
+                courseId = new Integer(GUI_Util.parseIdFromComboBoxOption(
+                        studentCourseCb.getSelectedItem().toString()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "رقم الصف المدخل غير موجود !");
+            }
         }
         try {
             StudentsUtil.createStudent(studentFirstNameTf.getText(), studentFatherNameTf.getText(),

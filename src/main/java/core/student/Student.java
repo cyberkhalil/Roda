@@ -240,7 +240,11 @@ public class Student {
         this.citizenOrRefugee = null;
         this.address = null;
         this.courseId = -3;
-        // TODO remove from StudentCourses & StudentItems, StudentPurchases & StudentPurchases
+        // TODO also remove from StudentItems, StudentPurchases
+    }
+
+    public void addItem(core.item.Item i) {
+        // TODO implement this
     }
 
 }

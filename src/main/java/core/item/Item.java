@@ -45,11 +45,6 @@ public class Item {
         throw new UnsupportedOperationException("This operation is not supported yet");
     }
 
-    public DefaultTableModel getBoughtAsTable() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
-    }
-
     public int getStudentsNumber() {
         // TODO implement this method
         throw new UnsupportedOperationException("This operation is not supported yet");

@@ -34,7 +34,6 @@
               <Component id="itemDataPnl" min="-2" pref="300" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="itemsSPnl" min="-2" pref="650" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
           <Component id="titlePnl" max="32767" attributes="0"/>
       </Group>
@@ -242,7 +241,7 @@
                       <Component id="studentCourse" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

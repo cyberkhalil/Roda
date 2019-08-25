@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
@@ -44,7 +43,7 @@ public class StudentsUtil {
         updateSheet(STUDENTS_SHEET);
     }
 
-    public static void getStudentsFormatedAsTable(JTable tabel) {
+    public static void renderStudentsFormatedToTable(JTable tabel) {
         Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
         int max = (int) c.getNumericCellValue() + 2;
         String[] headers = new String[Student.COLUMN_COUNT - 3];
@@ -93,6 +92,21 @@ public class StudentsUtil {
                 return false;
             }
         });
+    }
+
+    public static ArrayList<Student> getStudents() {
+        Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+
+        ArrayList<Student> students = new ArrayList<>();
+        for (int i = 2; i < max; i++) {
+            Row row = STUDENTS_SHEET.getRow(i);
+            if (cellIsNull0OrBlank(row.getCell(0))) {
+                continue;
+            }
+            students.add(new Student((int) row.getCell(0).getNumericCellValue()));
+        }
+        return students;
     }
 
     public static DefaultComboBoxModel getcitizenOrRefugeeAsComboBox() {

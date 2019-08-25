@@ -168,10 +168,13 @@ public class AddCourse extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "يجب أن تضع اسماً للصف !");
             return;
         }
-        // TODO do somthing when "سن مختلف"
+        String year = yearCB.getSelectedItem().toString();
+        if (year.equals("سن مختلف")) {
+            year = (String) JOptionPane.showInputDialog(rootPane, "السن المختلف :",
+                    "تعيين السن", JOptionPane.QUESTION_MESSAGE, null, null, null);
+        }
         try {
-            CoursesUtil.createCourse(courseNameTf.getText(), teacherNameTf.getText(),
-                    yearCB.getSelectedItem().toString());
+            CoursesUtil.createCourse(courseNameTf.getText(), teacherNameTf.getText(), year);
             JOptionPane.showMessageDialog(rootPane, "تمت إضافة الصف الجديد بنجاح");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "لقد حدث خطأ أثناء عملية الإضافة");
