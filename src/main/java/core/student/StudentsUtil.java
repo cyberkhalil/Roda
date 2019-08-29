@@ -43,7 +43,7 @@ public class StudentsUtil {
         updateSheet(STUDENTS_SHEET);
     }
 
-    public static void renderStudentsFormatedToTable(JTable tabel) {
+    public static void renderStudentsFormatedToTable(JTable table) {
         Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
         int max = (int) c.getNumericCellValue() + 2;
         String[] headers = new String[Student.COLUMN_COUNT - 3];
@@ -73,13 +73,13 @@ public class StudentsUtil {
                     rowArray[j - 3]
                             = GUI_Util.setImageIconToSize(
                                     GUI_Util.getImageIconFromCellString(rowArray[j - 3].toString()),
-                                    tabel.getWidth() / (Student.COLUMN_COUNT - 3),
-                                    tabel.getRowHeight());
+                                    table.getWidth() / (Student.COLUMN_COUNT - 3),
+                                    table.getRowHeight());
                 }
             }
             data.add(rowArray);
         }
-        tabel.setModel(new DefaultTableModel(
+        table.setModel(new DefaultTableModel(
                 data.toArray(new Object[data.size()][Student.COLUMN_COUNT - 3]), headers) {
             @Override
             public Class getColumnClass(int column) {
@@ -107,6 +107,50 @@ public class StudentsUtil {
             students.add(new Student((int) row.getCell(0).getNumericCellValue()));
         }
         return students;
+    }
+
+    public static DefaultTableModel getStudentsAsTable(ArrayList<Student> students) {
+        Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
+        String[] headers = new String[Student.COLUMN_COUNT - 3];
+
+        headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
+        headers[1] = "اسم الطالب";
+        headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
+        for (int i = 6; i < Student.COLUMN_COUNT - 2; i++) {
+            headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i)
+                    .getRichStringCellValue().getString();
+        }
+
+        ArrayList<Object[]> data = new ArrayList<>();
+        for (int i = 0; i < students.size(); i++) {
+            Student s = students.get(i);
+            Object[] rowArray = new Object[Student.COLUMN_COUNT - 5];
+            rowArray[0] = s.getId();
+            rowArray[1] = s.getFullName();
+            rowArray[2] = s.getMotherName();
+            rowArray[3] = s.getBirthDate();
+            rowArray[4] = s.getIdentitiyNumber();
+            rowArray[5] = s.getGuardianName();
+            rowArray[6] = s.getGuardianJob();
+            rowArray[7] = s.getGuardianPhone();
+            rowArray[8] = s.getCitizenOrRefugee();
+            rowArray[9] = s.getAddress();
+
+            data.add(rowArray);
+        }
+        return new DefaultTableModel(
+                data.toArray(new Object[data.size()][Student.COLUMN_COUNT - 3]), headers) {
+            @Override
+            public Class getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // for preventing any cell edit
+                return false;
+            }
+        };
     }
 
     public static DefaultComboBoxModel getcitizenOrRefugeeAsComboBox() {

@@ -4,10 +4,15 @@ import core.student.Student;
 import core.student.StudentsUtil;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import static util.Statics.COURSES_SHEET;
+import static util.Statics.STUDENTS_SHEET;
+import static util.Statics.cellIsNull0OrBlank;
 import static util.Statics.updateSheet;
+import util.gui.GUI_Util;
 
 public class Course {
 
@@ -52,38 +57,57 @@ public class Course {
         return students.size();
     }
 
-    public DefaultTableModel getStudentsAsTable() {
-        /* TODO implement this code
-        final int columnCount = 4;
-        String[] columnNames = new String[columnCount];
-        for (int i = 0; i < columnCount; i++) {
-            columnNames[i] = Statics.COURSES_SHEET.getRow(1).getCell(i)
-                    .getRichStringCellValue().getString();
+    public void renderStudentsToTable(JTable table) {
+        Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+        String[] headers = new String[Student.COLUMN_COUNT - 3];
+
+        headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
+        headers[1] = "اسم الطالب";
+        headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
+        for (int i = 6; i < Student.COLUMN_COUNT; i++) {
+            headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i).getRichStringCellValue()
+                    .getString();
         }
-        Cell c = Statics.COURSES_SHEET.getRow(0).getCell(1);
-        int startValue = 2;
-        int max = (int) c.getNumericCellValue() + startValue;
-        ArrayList<Object[]> rows = new ArrayList<>(max - startValue);
-        for (int i = startValue; i < max; i++) {
-            Object[] row = new Object[columnCount];
-            for (int j = 0; j < columnCount; j++) {
-                row[j] = Statics.COURSES_SHEET.getRow(i).getCell(j);
-            }
-            if (row[0].toString().equals("")) {
+
+        ArrayList<Object[]> data = new ArrayList<>();
+        for (int i = 2; i < max; i++) {
+            Row row = STUDENTS_SHEET.getRow(i);
+            if (cellIsNull0OrBlank(row.getCell(0))) {
                 continue;
             }
-            rows.add(row);
+            Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
+            rowArray[0] = row.getCell(0);
+            rowArray[1] = row.getCell(1) + " " + row.getCell(2) + " " + row.getCell(4) + " "
+                    + row.getCell(5);
+            rowArray[2] = row.getCell(3);
+            for (int j = 6; j < Student.COLUMN_COUNT; j++) {
+                rowArray[j - 3] = row.getCell(j);
+                if (GUI_Util.isImageCellString(rowArray[j - 3].toString())) {
+                    rowArray[j - 3] = GUI_Util.setImageIconToSize(
+                            GUI_Util.getImageIconFromCellString(
+                                    rowArray[j - 3].toString()),
+                            table.getWidth() / (Student.COLUMN_COUNT - 3),
+                            table.getRowHeight());
+                }
+            }
+            if ((int) rowArray[10] == id) {
+                data.add(rowArray);
+            }
         }
-        return new DefaultTableModel(
-                rows.toArray(new Object[rows.size()][columnCount]), columnNames) {
+        table.setModel(new DefaultTableModel(
+                data.toArray(new Object[data.size()][Student.COLUMN_COUNT - 3]), headers) {
+            @Override
+            public Class getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
             @Override
             public boolean isCellEditable(int row, int column) {
                 // for preventing any cell edit
                 return false;
             }
-        };
-         */
-        throw new UnsupportedOperationException("This operation is not supported yet");
+        });
     }
 
     public void setName(String name) throws IOException {

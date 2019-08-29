@@ -357,7 +357,7 @@ public class EditCourses extends javax.swing.JFrame {
     private void displayCourseStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCourseStudentsBtnActionPerformed
         GUI_Util.link_frame_to_button(GUI_Util.displayItemsInJTable((table) -> {
             try {
-                table.setModel(selectedCourse.getStudentsAsTable());
+                selectedCourse.renderStudentsToTable(table);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "حدث خطأ أثناء إظهار طلاب الصف");
                 System.err.println(ex);

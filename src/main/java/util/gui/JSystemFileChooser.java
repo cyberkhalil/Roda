@@ -1,15 +1,30 @@
 package util.gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import javax.swing.JFileChooser;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import sun.swing.FilePane;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class JSystemFileChooser extends JFileChooser {
+
+    private static FilePane findFilePane(Container parent) {
+        for (Component comp : parent.getComponents()) {
+            if (comp instanceof FilePane) {
+                return (FilePane) comp;
+            }
+            if (comp instanceof Container) {
+                Container cont = (Container) comp;
+                if (cont.getComponentCount() > 0) {
+                    FilePane found = findFilePane(cont);
+                    if (found != null) {
+                        return found;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
 
     @Override
     public void updateUI() {
@@ -36,24 +51,5 @@ public class JSystemFileChooser extends JFileChooser {
             } catch (UnsupportedLookAndFeelException ignored) {
             } // shouldn't get here
         }
-    }
-
-    private static FilePane findFilePane(Container parent) {
-        for (Component comp : parent.getComponents()) {
-            if (FilePane.class.isInstance(comp)) {
-                return (FilePane) comp;
-            }
-            if (comp instanceof Container) {
-                Container cont = (Container) comp;
-                if (cont.getComponentCount() > 0) {
-                    FilePane found = findFilePane(cont);
-                    if (found != null) {
-                        return found;
-                    }
-                }
-            }
-        }
-
-        return null;
     }
 }

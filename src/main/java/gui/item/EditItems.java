@@ -340,11 +340,38 @@ public class EditItems extends javax.swing.JFrame {
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
     private void setDescBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDescBtnActionPerformed
-        // TODO add your handling code here:
+        if (isBadSelection()) {
+            return;
+        }
+        String desc = (String) JOptionPane.showInputDialog(rootPane, "الوصف الجديد للعنصر :",
+                "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
+                selectedItem.getDescription());
+
+        if (desc == null) {
+            return;
+        } else if (desc.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الوصف فارغاً");
+            setNameBtnActionPerformed(evt);
+        }
+
+        try {
+            selectedItem.setDescription(desc);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء توصيف العنصر بهذا الوصف");
+            System.err.println(ex);
+        }
+        updateTableAndDataPnl();
     }//GEN-LAST:event_setDescBtnActionPerformed
 
     private void displayItemStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayItemStudentsBtnActionPerformed
-        // TODO add your handling code here:
+        GUI_Util.link_frame_to_button(GUI_Util.displayItemsInJTable((table) -> {
+            try {
+                selectedItem.renderStudentsToTable(table);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "حدث خطأ أثناء إظهار طلاب الصف");
+                System.err.println(ex);
+            }
+        }), displayItemStudentsBtn);
     }//GEN-LAST:event_displayItemStudentsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

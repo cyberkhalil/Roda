@@ -1,12 +1,19 @@
 package core.student;
 
 import core.course.Course;
+import core.item.Item;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import util.Statics;
+import static util.Statics.STUDENTS_ITEMS_SHEET;
 import static util.Statics.STUDENTS_SHEET;
+import static util.Statics.cellIsNull0OrBlank;
 import static util.Statics.updateSheet;
+import util.gui.GUI_Util;
 
 public class Student {
 
@@ -114,9 +121,38 @@ public class Student {
         throw new UnsupportedOperationException("This operation is not supported yet");
     }
 
-    public DefaultTableModel getItemAsTable() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
+    public DefaultTableModel getItemsAsTable() {
+        ArrayList<Row> rows = getItemsAsRows();
+        return GUI_Util.buildTableModel(rows, 4);
+    }
+
+    private ArrayList<Row> getItemsAsRows() {
+        ArrayList<Row> rows = new ArrayList<>();
+        Cell c = STUDENTS_ITEMS_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+        for (int i = 2; i < max; i++) {
+            Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
+            Row r = STUDENTS_ITEMS_SHEET.getRow(i);
+            if (cellIsNull0OrBlank(r.getCell(0))
+                    && (int) r.getCell(1).getNumericCellValue() == id) {
+                rows.add(r);
+            }
+        }
+        return rows;
+    }
+
+    public ArrayList<Item> getItems() {
+        ArrayList<Item> items = new ArrayList<>();
+        Cell c = STUDENTS_ITEMS_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+        for (int i = 2; i < max; i++) {
+            Row r = STUDENTS_ITEMS_SHEET.getRow(i);
+            if (cellIsNull0OrBlank(r.getCell(0))
+                    && (int) r.getCell(1).getNumericCellValue() == id) {
+                items.add(new Item((int) r.getCell(2).getNumericCellValue()));
+            }
+        }
+        return items;
     }
 
     public String getTeacherName() {
@@ -240,11 +276,41 @@ public class Student {
         this.citizenOrRefugee = null;
         this.address = null;
         this.courseId = -3;
-        // TODO also remove from StudentItems, StudentPurchases
+        for (Row r : getItemsAsRows()) {
+            r.getCell(0).setBlank();
+            r.getCell(1).setBlank();
+            r.getCell(2).setBlank();
+            r.getCell(3).setBlank();
+        }
+        updateSheet(STUDENTS_ITEMS_SHEET);
+        // TODO alse remove from StudentPurchases
     }
 
-    public void addItem(core.item.Item i) {
-        // TODO implement this
+    public void addItem(Item i) throws IOException {
+        Cell c = STUDENTS_ITEMS_SHEET.getRow(0).getCell(1);
+        int preValue = (int) c.getNumericCellValue();
+        int max = preValue + 2;
+        Row CourseRow = STUDENTS_ITEMS_SHEET.createRow(max);
+        CourseRow.createCell(0).setCellValue(preValue + 1); //id
+        CourseRow.createCell(1).setCellValue(id);
+        CourseRow.createCell(2).setCellValue(i.getId());
+        CourseRow.createCell(3).setCellValue(new Date());
+        c.setCellValue(preValue + 1); // max value will get addition 1
+        updateSheet(STUDENTS_ITEMS_SHEET);
+    }
+
+    public void removeItem(Item i) {
+        ArrayList<Row> rows = getItemsAsRows();
+        for (Row r : rows) {
+            if ((int) r.getCell(2).getNumericCellValue() == i.getId()) {
+                r.getCell(0).setBlank();
+                r.getCell(1).setBlank();
+                r.getCell(2).setBlank();
+                r.getCell(3).setBlank();
+                return;
+            }
+        }
+        throw new IllegalArgumentException("You can't remove item that student doesn't have");
     }
 
 }

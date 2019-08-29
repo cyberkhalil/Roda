@@ -1,7 +1,10 @@
 package core.item;
 
+import core.student.Student;
+import core.student.StudentsUtil;
 import java.io.IOException;
-import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import org.apache.poi.ss.usermodel.Row;
 import static util.Statics.ITEMS_SHEET;
 import static util.Statics.updateSheet;
@@ -40,14 +43,21 @@ public class Item {
         return description;
     }
 
-    public DefaultTableModel getStudentsAsTable() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
+    public void renderStudentsToTable(JTable table) {
+        table.setModel(StudentsUtil.getStudentsAsTable(getStudents()));
     }
 
     public int getStudentsNumber() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
+        return getStudents().size();
+    }
+
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> itemStudents = new ArrayList<>();
+        StudentsUtil.getStudents().stream().filter(
+                (s) -> (s.getItems().contains(this))).forEachOrdered((s) -> {
+                    itemStudents.add(s);
+                });
+        return itemStudents;
     }
 
     public void setName(String name) throws IOException {
@@ -77,7 +87,10 @@ public class Item {
         this.name = null;
         this.description = null;
         this.price = -1;
-        // TODO remove from StudentItems
+        StudentsUtil.getStudents().stream().filter((s) -> (s.getItems().contains(this)))
+                .forEachOrdered((s) -> {
+                    s.removeItem(this);
+                });
     }
 
     public boolean isValid() {
