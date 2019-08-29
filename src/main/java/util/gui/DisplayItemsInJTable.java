@@ -10,6 +10,7 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
 
     public DisplayItemsInJTable(GUI_Util.UpdateTableOperation uto) {
         initComponents();
+        GUI_Util.setUpRodaImgLbl(imgLbl);
         uto.updateTable(itemsTbl);
         this.updateTableOperation = uto;
     }
@@ -48,28 +49,26 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
         titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        imgLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
-
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText("روضة الإبداع التربوي");
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
         titlePnlLayout.setHorizontalGroup(
             titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePnlLayout.createSequentialGroup()
-                .addComponent(imgLbl)
+                .addComponent(imgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         titlePnlLayout.setVerticalGroup(
             titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imgLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+            .addComponent(imgLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
             .addGroup(titlePnlLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(39, 39, 39)
                 .addComponent(titleLbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -142,7 +141,6 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshTableBtnActionPerformed
 
     private void printTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTableBtnActionPerformed
-        // TODO print excel file
         try {
             JSystemFileChooser f = new JSystemFileChooser();
             f.setFileSelectionMode(JSystemFileChooser.FILES_ONLY);

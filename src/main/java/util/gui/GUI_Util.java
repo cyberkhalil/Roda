@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -90,7 +89,11 @@ public class GUI_Util {
             //Set the row to the next one in the sequence 
             row = sheet.createRow((rows + 3));
         }
-        wb.write(new FileOutputStream(path));//Save the file     
+        if (path.endsWith(".xlc")) {
+            wb.write(new FileOutputStream(path));//Save the file     
+        } else {
+            wb.write(new FileOutputStream(path + ".xlc"));//Save the file     
+        }
     }
 
     public static String parseIdFromComboBoxOption(String option) {
@@ -98,12 +101,12 @@ public class GUI_Util {
                 || !option.contains(")")) {
             return "0";
         }
-        int i1 = option.lastIndexOf("(");
+        int i1 = option.lastIndexOf("(") + 3;// 3 = "id=".length()
         int i2 = option.lastIndexOf(")");
         if (i2 < i1) {
             return "0";
         }
-        return option.substring(i1 + 1, i2 - 1);
+        return option.substring(i1 + 1, i2);
     }
 
     public static ImageIcon getImageIconFromCell(Cell cell) {
@@ -224,34 +227,11 @@ public class GUI_Util {
         return promoteFrame;
     }
 
-    public static JFrame promoteComboBoxAndSpinner(String title, String comboLblTxt,
-            ComboBoxModel comboBoxModel, String spinnerLblTxt, SpinnerNumberModel spinnerModel,
-            String buttonTxt, DoSomethingWithComboBoxAndSpinner dswcbas) {
-        JFrame promoteFrame = new PromoteComboBoxAndSpinner(title, comboLblTxt, comboBoxModel,
+    public static JFrame promoteComboBoxAndSpinner(String title, String textAreaLblTxt,
+            String spinnerLblTxt, SpinnerNumberModel spinnerModel, String buttonTxt,
+            DoSomethingWithTextAndSpinner dswcbas) {
+        JFrame promoteFrame = new PromoteTextAreaAndSpinner(title, textAreaLblTxt,
                 spinnerLblTxt, spinnerModel, buttonTxt, dswcbas);
-        promoteFrame.setVisible(true);
-        return promoteFrame;
-    }
-
-    public static JFrame promoteComboBoxAndTwoOrSpinners(String title, String comboLblTxt,
-            ComboBoxModel comboBoxModel, String spinner1LblTxt, SpinnerNumberModel spinner1Model,
-            String spinner2LblTxt, SpinnerNumberModel spinner2Model, String toggleTextON,
-            String toggleTextOFF, String buttonTxt,
-            DoSomethingWithComboBoxAndTwoOrSpinners dswcbatos) {
-        JFrame promoteFrame = new PromoteComboBoxAndTwoOrSpinners(title, comboLblTxt, comboBoxModel,
-                spinner1LblTxt, spinner1Model, spinner2LblTxt, spinner2Model, toggleTextON,
-                toggleTextOFF, buttonTxt, dswcbatos);
-        promoteFrame.setVisible(true);
-        return promoteFrame;
-    }
-
-    public static JFrame promoteTwoOrSpinners(String title, String spinner1LblTxt,
-            SpinnerNumberModel spinner1Model, String spinner2LblTxt,
-            SpinnerNumberModel spinner2Model, String toggleTextON, String toggleTextOFF,
-            String buttonTxt, DoSomethingWithTwoOrSpinners dswtos) {
-        JFrame promoteFrame = new PromoteTwoOrSpinners(
-                title, spinner1LblTxt, spinner1Model, spinner2LblTxt, spinner2Model, toggleTextON,
-                toggleTextOFF, buttonTxt, dswtos);
         promoteFrame.setVisible(true);
         return promoteFrame;
     }
@@ -263,25 +243,10 @@ public class GUI_Util {
         return promoteFrame;
     }
 
-    public static JFrame promoteFormatedTextField(String title, String labelTxt, String format,
-            String buttonTxt, DoSomethingWithFormatedTextField dswftf) {
-        JFrame promoteFrame = new PromoteFormatedTextField(
-                title, labelTxt, format, buttonTxt, dswftf);
-        promoteFrame.setVisible(true);
-        return promoteFrame;
-    }
-
     public static JFrame displayItemsInJTable(UpdateTableOperation uto) {
         JFrame displayFrame = new DisplayItemsInJTable(uto);
         displayFrame.setVisible(true);
         return displayFrame;
-    }
-
-    public static DisplayProgressBar displayProgressBar(String title, String labelTxt,
-            UpdateProgressBarOperation upbo) {
-        DisplayProgressBar frame = new DisplayProgressBar(title, labelTxt, upbo);
-        frame.setVisible(true);
-        return frame;
     }
 
     public static void setUpRodaImgLbl(JLabel imgLbl) {
@@ -330,57 +295,15 @@ public class GUI_Util {
         abstract boolean doSomething(long DateInMillis);
     }
 
-    public static abstract interface DoSomethingWithFormatedTextField {
-
-        /**
-         * @param formatedText
-         * @return true to close or false to not close
-         */
-        abstract boolean doSomething(String formatedText);
-    }
-
-    public static abstract interface DoSomethingWithDays {
+    public static abstract interface DoSomethingWithTextAndSpinner {
 
         /**
          *
-         * @param days
-         * @return true to close or false to not close
-         */
-        abstract boolean doSomething(String days);
-    }
-
-    public static abstract interface DoSomethingWithComboBoxAndSpinner {
-
-        /**
-         *
-         * @param choise
+         * @param text
          * @param value
          * @return true to close or false to not close
          */
-        abstract boolean doSomething(String choise, double value);
-    }
-
-    public static abstract interface DoSomethingWithComboBoxAndTwoOrSpinners {
-
-        /**
-         *
-         * @param choise
-         * @param first
-         * @param value
-         * @return true to close or false to not close
-         */
-        abstract boolean doSomething(String choise, boolean first, double value);
-    }
-
-    public static abstract interface DoSomethingWithTwoOrSpinners {
-
-        /**
-         *
-         * @param first
-         * @param value
-         * @return true to close or false to not close
-         */
-        abstract boolean doSomething(boolean first, double value);
+        abstract boolean doSomething(String text, double value);
     }
 
     public static abstract interface UpdateTableOperation {
@@ -389,15 +312,5 @@ public class GUI_Util {
          * @param table
          */
         abstract void updateTable(JTable table);
-    }
-
-    public static abstract interface UpdateProgressBarOperation {
-
-        /**
-         * @param progressBar
-         * @param progressBarLabel
-         * @return true to close or false to not close
-         */
-        abstract boolean updateBar(JProgressBar progressBar, JLabel progressBarLabel);
     }
 }

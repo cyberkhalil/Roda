@@ -2,7 +2,9 @@ package gui.item;
 
 import core.item.Item;
 import core.item.ItemsUtil;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import util.gui.GUI_Util;
 
@@ -336,7 +338,17 @@ public class EditItems extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteItemBtnActionPerformed
 
     private void setPriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriceBtnActionPerformed
-        // TODO add your handling code here:
+        GUI_Util.promoteSpinner("سعر العنصر", "سعر العنصر :",
+                new SpinnerNumberModel(0, 0, 10_000, 1.0), "غير السعر", (price) -> {
+                    try {
+                        this.selectedItem.setPrice(price);
+                        return true;
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(this, "لقد حصل خطأ تعيين السعر الجديد");
+                        System.err.println(ex);
+                        return false;
+                    }
+                });
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
     private void setDescBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDescBtnActionPerformed

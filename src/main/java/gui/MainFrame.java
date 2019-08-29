@@ -415,6 +415,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void printStudentsInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printStudentsInfoBtnActionPerformed
+        // TODO enchance and add more data to print
         JFileChooser f = new JSystemFileChooser();
         f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         f.showSaveDialog(rootPane);
@@ -429,6 +430,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_printStudentsInfoBtnActionPerformed
 
     private void printCoursesInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printCoursesInfoBtnActionPerformed
+        // TODO enchance and add more data to print
         JFileChooser f = new JSystemFileChooser();
         f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         f.showSaveDialog(rootPane);
@@ -443,6 +445,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_printCoursesInfoBtnActionPerformed
 
     private void printItemsInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printItemsInfoBtnActionPerformed
+        // TODO enchance and add more data to print
         JFileChooser f = new JSystemFileChooser();
         f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         f.showSaveDialog(rootPane);

@@ -85,7 +85,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="imgLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="imgLbl" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="titleLbl" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -94,9 +94,9 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="imgLbl" alignment="0" pref="88" max="32767" attributes="0"/>
+              <Component id="imgLbl" alignment="0" pref="100" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="titleLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -105,11 +105,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="imgLbl">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Images/Everest_logo.jpg"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="titleLbl">
           <Properties>
@@ -120,7 +115,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Everest Training center"/>
+            <Property name="text" type="java.lang.String" value="&#x631;&#x648;&#x636;&#x629; &#x627;&#x644;&#x625;&#x628;&#x62f;&#x627;&#x639; &#x627;&#x644;&#x62a;&#x631;&#x628;&#x648;&#x64a;"/>
           </Properties>
         </Component>
       </SubComponents>

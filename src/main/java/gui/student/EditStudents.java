@@ -1,5 +1,6 @@
 package gui.student;
 
+import core.course.Course;
 import core.course.CoursesUtil;
 import core.student.Student;
 import core.student.StudentsUtil;
@@ -47,8 +48,10 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         studentPhoneNumberTf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        studentCourse = new javax.swing.JTextField();
+        studentCourseTf = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        studentBalanceTf = new javax.swing.JTextField();
         studentButtonsPnl = new javax.swing.JPanel();
         setFirstNameBtn = new javax.swing.JButton();
         setFatherNameBtn = new javax.swing.JButton();
@@ -108,7 +111,6 @@ public class EditStudents extends javax.swing.JFrame {
         ));
         studentsTbl.setRowHeight(40);
         studentsTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        studentsTbl.setSurrendersFocusOnKeystroke(true);
         studentsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 studentsTblMouseClicked(evt);
@@ -177,50 +179,66 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("رقم الهاتف :");
 
-        studentCourse.setEditable(false);
-        studentCourse.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        studentCourseTf.setEditable(false);
+        studentCourseTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("صف الطالب :");
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("رصيد الطالب :");
+
+        studentBalanceTf.setEditable(false);
+        studentBalanceTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         javax.swing.GroupLayout itemDataPnlLayout = new javax.swing.GroupLayout(itemDataPnl);
         itemDataPnl.setLayout(itemDataPnlLayout);
         itemDataPnlLayout.setHorizontalGroup(
             itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(itemDataPnlLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(itemDataPnlLayout.createSequentialGroup()
-                        .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(studentdTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentMotherNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(itemDataPnlLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
                                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(studentdTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentMotherNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(itemDataPnlLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(itemDataPnlLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(studentImgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(itemDataPnlLayout.createSequentialGroup()
+                                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(studentIdentitiyNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentBirthDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentGuardianNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentPhoneNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentCourseTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(studentImgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)))))
                     .addGroup(itemDataPnlLayout.createSequentialGroup()
-                        .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(studentIdentitiyNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentBirthDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentGuardianNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentPhoneNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))))
+                        .addContainerGap()
+                        .addComponent(studentBalanceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(7, 7, 7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         itemDataPnlLayout.setVerticalGroup(
@@ -228,39 +246,43 @@ public class EditStudents extends javax.swing.JFrame {
             .addGroup(itemDataPnlLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(studentImgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(13, 13, 13)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentMotherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentBirthDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentIdentitiyNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentGuardianNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentPhoneNumberTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(studentCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentCourseTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(itemDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(studentBalanceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         studentButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -424,7 +446,7 @@ public class EditStudents extends javax.swing.JFrame {
         studentButtonsPnlLayout.setVerticalGroup(
             studentButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentButtonsPnlLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(13, 13, 13)
                 .addComponent(setFirstNameBtn)
                 .addGap(10, 10, 10)
                 .addComponent(setFatherNameBtn)
@@ -456,7 +478,7 @@ public class EditStudents extends javax.swing.JFrame {
                 .addComponent(otherOperations)
                 .addGap(10, 10, 10)
                 .addComponent(deleteStudentBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -469,8 +491,7 @@ public class EditStudents extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(itemDataPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(itemsSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(itemsSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -827,21 +848,24 @@ public class EditStudents extends javax.swing.JFrame {
                 Integer courseId = new Integer(GUI_Util.parseIdFromComboBoxOption(choice));
                 selectedStudent.setCourse(courseId);
                 JOptionPane.showMessageDialog(rootPane, "تمت عملية اختيار الصف بنجاح");
+                updateTableAndDataPnl();
                 return true;
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, "رقم الصف المدخل غير موجود !");
                 System.err.println(ex);
+                updateTableAndDataPnl();
                 return false;
             }
         });
-        updateTableAndDataPnl();
     }//GEN-LAST:event_setCourseIdBtnActionPerformed
 
     private void otherOperationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherOperationsActionPerformed
         if (isBadSelection()) {
             return;
         }
-        //TODO
+        StudentOtherOperations frame = new StudentOtherOperations(selectedStudent);
+        frame.setVisible(true);
+        GUI_Util.link_frame_to_button(frame, otherOperations);
         updateTableAndDataPnl();
     }//GEN-LAST:event_otherOperationsActionPerformed
 
@@ -878,6 +902,7 @@ public class EditStudents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JButton otherOperations;
     private javax.swing.JButton setAddressBtn;
     private javax.swing.JButton setBirthDateBtn;
@@ -893,9 +918,10 @@ public class EditStudents extends javax.swing.JFrame {
     private javax.swing.JButton setLastNameBtn;
     private javax.swing.JButton setMotherNameBtn;
     private javax.swing.JButton setSitizenOrRefugeeBtn;
+    private javax.swing.JTextField studentBalanceTf;
     private javax.swing.JTextField studentBirthDateTf;
     private javax.swing.JPanel studentButtonsPnl;
-    private javax.swing.JTextField studentCourse;
+    private javax.swing.JTextField studentCourseTf;
     private javax.swing.JTextField studentGuardianNameTf;
     private javax.swing.JTextField studentIdentitiyNumberTf;
     private javax.swing.JLabel studentImgLbl;
@@ -921,15 +947,27 @@ public class EditStudents extends javax.swing.JFrame {
                             new ImageIcon(Statics.NULL_IMAGE_FILE.toString()), studentImgLbl));
             studentdTf.setText("");
             studentNameTf.setText("");
+            studentMotherNameTf.setText("");
+            studentBirthDateTf.setText("");
+            studentIdentitiyNumberTf.setText("");
+            studentGuardianNameTf.setText("");
+            studentPhoneNumberTf.setText("");
+            studentCourseTf.setText("");
+            studentBalanceTf.setText("");
         } else {
             studentImgLbl.setIcon(GUI_Util.setImageIconToLabelSize(
                     GUI_Util.getImageIconFromCellString(selectedStudent.getImage()),
                     studentImgLbl));
             studentdTf.setText(String.valueOf(selectedStudent.getId()));
-            studentNameTf.setText(selectedStudent.getFirstName() + " "
-                    + selectedStudent.getFatherName() + " "
-                    + selectedStudent.getGrandFatherName() + " "
-                    + selectedStudent.getLastName());
+            studentNameTf.setText(selectedStudent.getFullName());
+            studentMotherNameTf.setText(selectedStudent.getMotherName());
+            studentBirthDateTf.setText(selectedStudent.getFormatedBirthDate());
+            studentIdentitiyNumberTf.setText(selectedStudent.getIdentitiyNumber());
+            studentGuardianNameTf.setText(selectedStudent.getGuardianName());
+            studentPhoneNumberTf.setText(selectedStudent.getGuardianPhone());
+            Course c = new Course(selectedStudent.getCourseId());
+            studentCourseTf.setText(c.getName() + "(id=" + c.getId() + ")");
+            studentBalanceTf.setText(selectedStudent.getBalance() + "");
         }
     }
 

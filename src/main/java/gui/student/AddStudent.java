@@ -19,7 +19,6 @@ public class AddStudent extends javax.swing.JFrame {
 
     public AddStudent() {
         initComponents();
-        // TODO change all formated text fields to normal text fields
         GUI_Util.setUpRodaImgLbl(imgLbl);
         for (java.awt.Component component : contentPnl.getComponents()) {
             if (component instanceof JTextField) {
@@ -489,10 +488,10 @@ public class AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_studentIdentitiyNumberFtfFocusGained
 
     private void studentGruadianPhoneNumberFtfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_studentGruadianPhoneNumberFtfFocusGained
-        if (GUI_Util.TextBetweenBrackets(studentIdentitiyNumberFtf)) {
-            studentIdentitiyNumberFtf.setText("");
+        if (GUI_Util.TextBetweenBrackets(studentGruadianPhoneNumberFtf)) {
+            studentGruadianPhoneNumberFtf.setText("");
             try {
-                studentIdentitiyNumberFtf.setFormatterFactory(new DefaultFormatterFactory(
+                studentGruadianPhoneNumberFtf.setFormatterFactory(new DefaultFormatterFactory(
                         new MaskFormatter("##########")));
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(rootPane, "حصل خطأ في تحويل نمط رقم الهاتف للأرقام");

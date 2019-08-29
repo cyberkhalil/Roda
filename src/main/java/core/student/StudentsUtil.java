@@ -1,6 +1,7 @@
 package core.student;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -67,7 +68,9 @@ public class StudentsUtil {
             rowArray[1] = row.getCell(1) + " " + row.getCell(2) + " " + row.getCell(4)
                     + " " + row.getCell(5);
             rowArray[2] = row.getCell(3);
-            for (int j = 6; j < Student.COLUMN_COUNT; j++) {
+            rowArray[3] = new SimpleDateFormat("YYYY-MM-DD").
+                    format(row.getCell(6).getDateCellValue());
+            for (int j = 7; j < Student.COLUMN_COUNT; j++) {
                 rowArray[j - 3] = row.getCell(j);
                 if (GUI_Util.isImageCellString(rowArray[j - 3].toString())) {
                     rowArray[j - 3]
@@ -128,7 +131,7 @@ public class StudentsUtil {
             rowArray[0] = s.getId();
             rowArray[1] = s.getFullName();
             rowArray[2] = s.getMotherName();
-            rowArray[3] = s.getBirthDate();
+            rowArray[3] = s.getFormatedBirthDate();
             rowArray[4] = s.getIdentitiyNumber();
             rowArray[5] = s.getGuardianName();
             rowArray[6] = s.getGuardianJob();

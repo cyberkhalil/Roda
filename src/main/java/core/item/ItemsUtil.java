@@ -2,6 +2,7 @@ package core.item;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -27,6 +28,14 @@ public class ItemsUtil {
     }
 
     public static DefaultTableModel getItemsAsTable() {
+        return GUI_Util.buildTableModel(getItemsRows(), Item.COLUMN_COUNT);
+    }
+
+    public static DefaultComboBoxModel getItemsAsComboBox() {
+        return GUI_Util.buildComboBoxModel(getItemsRows(), 0, 1);
+    }
+
+    private static ArrayList<Row> getItemsRows() {
         Cell c = ITEMS_SHEET.getRow(0).getCell(1);
         int max = (int) c.getNumericCellValue() + 2;
         ArrayList<Row> rows = new ArrayList<>();
@@ -37,7 +46,7 @@ public class ItemsUtil {
             }
             rows.add(row);
         }
-        return GUI_Util.buildTableModel(rows, Item.COLUMN_COUNT);
+        return rows;
     }
 
     private ItemsUtil() {

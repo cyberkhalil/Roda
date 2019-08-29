@@ -3,13 +3,15 @@ package core.student;
 import core.course.Course;
 import core.item.Item;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import util.Statics;
 import static util.Statics.STUDENTS_ITEMS_SHEET;
+import static util.Statics.STUDENTS_PURCHASES_SHEET;
 import static util.Statics.STUDENTS_SHEET;
 import static util.Statics.cellIsNull0OrBlank;
 import static util.Statics.updateSheet;
@@ -87,6 +89,10 @@ public class Student {
         return birthDate;
     }
 
+    public String getFormatedBirthDate() {
+        return new SimpleDateFormat("YYYY-MM-DD").format(birthDate);
+    }
+
     public String getIdentitiyNumber() {
         return identitiyNumber;
     }
@@ -112,33 +118,118 @@ public class Student {
     }
 
     public double getBalance() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is still not supported");
+        double balance = 0;
+        Cell c = STUDENTS_PURCHASES_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+        for (int i = 2; i < max; i++) {
+            Row r = STUDENTS_PURCHASES_SHEET.getRow(i);
+            if (!cellIsNull0OrBlank(r.getCell(0))
+                    && (int) r.getCell(1).getNumericCellValue() == id) {
+                balance += r.getCell(2).getNumericCellValue();
+            }
+        }
+        for (Item item : getItems()) {
+            balance -= item.getPrice();
+        }
+        return balance;
     }
 
     public DefaultTableModel getBalanceAsTable() {
-        // TODO implement this method
-        throw new UnsupportedOperationException("This operation is not supported yet");
+        final int columnCount = 5;
+        final String[] headers = new String[columnCount];
+        ArrayList<Object[]> data = new ArrayList<>();
+        {
+            Row r = STUDENTS_PURCHASES_SHEET.getRow(1);
+            for (int i = 0; i < columnCount; i++) {
+                headers[i] = r.getCell(i).getRichStringCellValue().toString();
+            }
+        }
+        {
+            Cell c = STUDENTS_PURCHASES_SHEET.getRow(0).getCell(1);
+            int max = (int) c.getNumericCellValue() + 2;
+            for (int i = 2; i < max; i++) {
+                Row r = STUDENTS_PURCHASES_SHEET.getRow(i);
+                if (!cellIsNull0OrBlank(r.getCell(0))
+                        && (int) r.getCell(1).getNumericCellValue() == id) {
+                    Object[] b_row = new Object[columnCount];
+                    for (int j = 0; j < columnCount; j++) {
+                        b_row[j] = r.getCell(j);
+                    }
+                    data.add(b_row);
+                }
+            }
+        }
+        {
+            Cell c = STUDENTS_ITEMS_SHEET.getRow(0).getCell(1);
+            int max = (int) c.getNumericCellValue() + 2;
+            for (int i = 2; i < max; i++) {
+                Row r = STUDENTS_ITEMS_SHEET.getRow(i);
+                if (!cellIsNull0OrBlank(r.getCell(0))
+                        && (int) r.getCell(1).getNumericCellValue() == id) {
+                    Item item = new Item((int) r.getCell(2).getNumericCellValue());
+                    data.add(new Object[]{r.getCell(0), r.getCell(1), -item.getPrice(),
+                        r.getCell(3), item.getDescription()});
+                }
+            }
+        }
+
+        return new DefaultTableModel(data.toArray(new Object[data.size()][columnCount]), headers) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // for preventing any cell edit
+                return false;
+            }
+        };
     }
 
     public DefaultTableModel getItemsAsTable() {
-        ArrayList<Row> rows = getItemsAsRows();
-        return GUI_Util.buildTableModel(rows, 4);
+        return GUI_Util.buildTableModel(getItemsAsRows(), 4);
+    }
+
+    public DefaultComboBoxModel getItemsAsComboBox() {
+        ArrayList<String> list = new ArrayList<>();
+        getItems().forEach((item) -> {
+            list.add(item.getName() + " (id=" + item.getId() + ")");
+        });
+        return new DefaultComboBoxModel<>(list.toArray());
     }
 
     private ArrayList<Row> getItemsAsRows() {
         ArrayList<Row> rows = new ArrayList<>();
         Cell c = STUDENTS_ITEMS_SHEET.getRow(0).getCell(1);
+        rows.add(STUDENTS_ITEMS_SHEET.getRow(1));
         int max = (int) c.getNumericCellValue() + 2;
         for (int i = 2; i < max; i++) {
-            Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
             Row r = STUDENTS_ITEMS_SHEET.getRow(i);
-            if (cellIsNull0OrBlank(r.getCell(0))
+            if (!cellIsNull0OrBlank(r.getCell(0))
                     && (int) r.getCell(1).getNumericCellValue() == id) {
                 rows.add(r);
             }
         }
         return rows;
+    }
+
+    private ArrayList<Row> getPurchasesAsRows() {
+        ArrayList<Row> rows = new ArrayList<>();
+        Cell c = STUDENTS_PURCHASES_SHEET.getRow(0).getCell(1);
+        int max = (int) c.getNumericCellValue() + 2;
+        for (int i = 2; i < max; i++) {
+            Row r = STUDENTS_PURCHASES_SHEET.getRow(i);
+            if (!cellIsNull0OrBlank(r.getCell(0))
+                    && (int) r.getCell(1).getNumericCellValue() == id) {
+                rows.add(r);
+            }
+        }
+        return rows;
+    }
+
+    public DefaultComboBoxModel getPurchasesAsComboBox() {
+        ArrayList<String> list = new ArrayList<>();
+        getPurchasesAsRows().forEach((r) -> {
+            list.add(r.getCell(2).getNumericCellValue()
+                    + " (id=" + r.getCell(0).getNumericCellValue() + ")");
+        });
+        return new DefaultComboBoxModel<>(list.toArray());
     }
 
     public ArrayList<Item> getItems() {
@@ -147,7 +238,7 @@ public class Student {
         int max = (int) c.getNumericCellValue() + 2;
         for (int i = 2; i < max; i++) {
             Row r = STUDENTS_ITEMS_SHEET.getRow(i);
-            if (cellIsNull0OrBlank(r.getCell(0))
+            if (!cellIsNull0OrBlank(r.getCell(0))
                     && (int) r.getCell(1).getNumericCellValue() == id) {
                 items.add(new Item((int) r.getCell(2).getNumericCellValue()));
             }
@@ -276,14 +367,24 @@ public class Student {
         this.citizenOrRefugee = null;
         this.address = null;
         this.courseId = -3;
-        for (Row r : getItemsAsRows()) {
-            r.getCell(0).setBlank();
-            r.getCell(1).setBlank();
-            r.getCell(2).setBlank();
-            r.getCell(3).setBlank();
-        }
+
+        getItemsAsRows().forEach((r) -> {
+            for (int i = 0; i < 4; i++) {
+                r.getCell(i).setBlank();
+            }
+        });
         updateSheet(STUDENTS_ITEMS_SHEET);
-        // TODO alse remove from StudentPurchases
+
+        getPurchasesAsRows().forEach((r) -> {
+            for (int i = 0; i < 5; i++) {
+                r.getCell(i).setBlank();
+            }
+        });
+        updateSheet(STUDENTS_PURCHASES_SHEET);
+    }
+
+    public void addItem(int itemId) throws IOException {
+        addItem(new Item(itemId));
     }
 
     public void addItem(Item i) throws IOException {
@@ -294,23 +395,57 @@ public class Student {
         CourseRow.createCell(0).setCellValue(preValue + 1); //id
         CourseRow.createCell(1).setCellValue(id);
         CourseRow.createCell(2).setCellValue(i.getId());
-        CourseRow.createCell(3).setCellValue(new Date());
+        CourseRow.createCell(3).setCellValue(new SimpleDateFormat("YYYY-MM-DD").format(new Date()));
         c.setCellValue(preValue + 1); // max value will get addition 1
         updateSheet(STUDENTS_ITEMS_SHEET);
     }
 
     public void removeItem(Item i) {
+        removeItem(i.getId());
+    }
+
+    public void removeItem(int itemId) {
         ArrayList<Row> rows = getItemsAsRows();
         for (Row r : rows) {
-            if ((int) r.getCell(2).getNumericCellValue() == i.getId()) {
-                r.getCell(0).setBlank();
-                r.getCell(1).setBlank();
-                r.getCell(2).setBlank();
-                r.getCell(3).setBlank();
+            if ((int) r.getCell(2).getNumericCellValue() == itemId) {
+                for (int i = 0; i < 4; i++) {
+                    r.getCell(i).setBlank();
+                }
                 return;
             }
         }
         throw new IllegalArgumentException("You can't remove item that student doesn't have");
     }
 
+    public void addPurchase(double money, String description) throws IOException {
+        Cell c = STUDENTS_PURCHASES_SHEET.getRow(0).getCell(1);
+        int preValue = (int) c.getNumericCellValue();
+        int max = preValue + 2;
+        Row CourseRow = STUDENTS_PURCHASES_SHEET.createRow(max);
+        CourseRow.createCell(0).setCellValue(preValue + 1); //id
+        CourseRow.createCell(1).setCellValue(id);
+        CourseRow.createCell(2).setCellValue(money);
+        CourseRow.createCell(3).setCellValue(new SimpleDateFormat("YYYY-MM-DD").format(new Date()));
+        CourseRow.createCell(4).setCellValue(description);
+        c.setCellValue(preValue + 1); // max value will get addition 1
+        updateSheet(STUDENTS_PURCHASES_SHEET);
+    }
+
+    public void removePurchase(int purchaseId) throws IOException {
+        ArrayList<Row> rows = getPurchasesAsRows();
+        for (Row r : rows) {
+            if ((int) r.getCell(0).getNumericCellValue() == purchaseId) {
+                for (int i = 0; i < 5; i++) {
+                    r.getCell(i).setBlank();
+                }
+                updateSheet(STUDENTS_PURCHASES_SHEET);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("لا يمكنك حذف عنصر من طالب لا يمتلكه");
+    }
+
+    public boolean isValid() {
+        return !row.getZeroHeight();
+    }
 }

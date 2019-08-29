@@ -169,7 +169,7 @@ public class AddCourse extends javax.swing.JFrame {
             return;
         }
         String year = yearCB.getSelectedItem().toString();
-        if (year.equals("سن مختلف")) {
+        while (year == null || year.equals("سن مختلف") || year.trim().isEmpty()) {
             year = (String) JOptionPane.showInputDialog(rootPane, "السن المختلف :",
                     "تعيين السن", JOptionPane.QUESTION_MESSAGE, null, null, null);
         }

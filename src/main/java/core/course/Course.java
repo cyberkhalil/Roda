@@ -72,17 +72,17 @@ public class Course {
 
         ArrayList<Object[]> data = new ArrayList<>();
         for (int i = 2; i < max; i++) {
-            Row row = STUDENTS_SHEET.getRow(i);
-            if (cellIsNull0OrBlank(row.getCell(0))) {
+            Row r = STUDENTS_SHEET.getRow(i);
+            if (cellIsNull0OrBlank(r.getCell(0))) {
                 continue;
             }
             Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
-            rowArray[0] = row.getCell(0);
-            rowArray[1] = row.getCell(1) + " " + row.getCell(2) + " " + row.getCell(4) + " "
-                    + row.getCell(5);
-            rowArray[2] = row.getCell(3);
+            rowArray[0] = r.getCell(0);
+            rowArray[1] = r.getCell(1) + " " + r.getCell(2) + " " + r.getCell(4) + " "
+                    + r.getCell(5);
+            rowArray[2] = r.getCell(3);
             for (int j = 6; j < Student.COLUMN_COUNT; j++) {
-                rowArray[j - 3] = row.getCell(j);
+                rowArray[j - 3] = r.getCell(j);
                 if (GUI_Util.isImageCellString(rowArray[j - 3].toString())) {
                     rowArray[j - 3] = GUI_Util.setImageIconToSize(
                             GUI_Util.getImageIconFromCellString(
@@ -91,7 +91,7 @@ public class Course {
                             table.getRowHeight());
                 }
             }
-            if ((int) rowArray[10] == id) {
+            if ((int) ((Cell) rowArray[10]).getNumericCellValue() == id) {
                 data.add(rowArray);
             }
         }
