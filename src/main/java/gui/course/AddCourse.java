@@ -82,19 +82,19 @@ public class AddCourse extends javax.swing.JFrame {
 
         courseNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         courseNameLbl.setForeground(new java.awt.Color(0, 51, 153));
-        courseNameLbl.setText("اسم الصف :");
+        courseNameLbl.setText("اسم الصف");
 
         courseNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         daysLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         daysLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        daysLbl1.setText("اسم المدرسة :");
+        daysLbl1.setText("اسم المدرسة");
 
         teacherNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         daysLbl2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         daysLbl2.setForeground(new java.awt.Color(0, 51, 153));
-        daysLbl2.setText("السن :");
+        daysLbl2.setText("السن");
 
         yearCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "سن مختلف", "بستان", "تمهيدي" }));
 
@@ -170,7 +170,7 @@ public class AddCourse extends javax.swing.JFrame {
         }
         String year = yearCB.getSelectedItem().toString();
         while (year == null || year.equals("سن مختلف") || year.trim().isEmpty()) {
-            year = (String) JOptionPane.showInputDialog(rootPane, "السن المختلف :",
+            year = (String) JOptionPane.showInputDialog(rootPane, "السن المختلف ",
                     "تعيين السن", JOptionPane.QUESTION_MESSAGE, null, null, null);
         }
         try {

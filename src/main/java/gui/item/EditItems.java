@@ -80,22 +80,22 @@ public class EditItems extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("رقم العنصر :");
+        jLabel1.setText("رقم العنصر");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("اسم العنصر :");
+        jLabel2.setText("اسم العنصر");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("سعر العنصر :");
+        jLabel3.setText("سعر العنصر");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("الوصف :");
+        jLabel4.setText("الوصف");
 
         itemDescTa.setEditable(false);
         itemDescTa.setColumns(20);
@@ -202,7 +202,7 @@ public class EditItems extends javax.swing.JFrame {
                     .addComponent(displayItemStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(itemButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(setDescBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(setDescBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(setNameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, itemButtonsPnlLayout.createSequentialGroup()
@@ -262,7 +262,7 @@ public class EditItems extends javax.swing.JFrame {
                     .addComponent(itemButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(itemDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addComponent(itemsSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
+                .addComponent(itemsSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -298,7 +298,7 @@ public class EditItems extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String itemName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للعنصر :",
+        String itemName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للعنصر",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null, selectedItem.getName());
 
         if (itemName == null) {
@@ -338,7 +338,7 @@ public class EditItems extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteItemBtnActionPerformed
 
     private void setPriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriceBtnActionPerformed
-        GUI_Util.promoteSpinner("سعر العنصر", "سعر العنصر :",
+        GUI_Util.promoteSpinner("سعر العنصر", "سعر العنصر",
                 new SpinnerNumberModel(0, 0, 10_000, 1.0), "غير السعر", (price) -> {
                     try {
                         this.selectedItem.setPrice(price);
@@ -355,7 +355,7 @@ public class EditItems extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String desc = (String) JOptionPane.showInputDialog(rootPane, "الوصف الجديد للعنصر :",
+        String desc = (String) JOptionPane.showInputDialog(rootPane, "الوصف الجديد للعنصر",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedItem.getDescription());
 

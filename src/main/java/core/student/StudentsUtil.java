@@ -1,20 +1,21 @@
 package core.student;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import static util.Statics.STUDENTS_SHEET;
-import static util.Statics.cellIsNull0OrBlank;
-import static util.Statics.updateSheet;
 import util.gui.GUI_Util;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+
+import static util.Statics.*;
+
 public class StudentsUtil {
+
+    private StudentsUtil() {
+    }
 
     public static void createStudent(String firstName, String fatherName, String motherName,
             String grandFatherName, String lastName, Date birthDate, String identitiyNumber,
@@ -68,9 +69,7 @@ public class StudentsUtil {
             rowArray[1] = row.getCell(1) + " " + row.getCell(2) + " " + row.getCell(4)
                     + " " + row.getCell(5);
             rowArray[2] = row.getCell(3);
-            rowArray[3] = new SimpleDateFormat("YYYY-MM-DD").
-                    format(row.getCell(6).getDateCellValue());
-            for (int j = 7; j < Student.COLUMN_COUNT; j++) {
+            for (int j = 6; j < Student.COLUMN_COUNT; j++) {
                 rowArray[j - 3] = row.getCell(j);
                 if (GUI_Util.isImageCellString(rowArray[j - 3].toString())) {
                     rowArray[j - 3]
@@ -113,7 +112,6 @@ public class StudentsUtil {
     }
 
     public static DefaultTableModel getStudentsAsTable(ArrayList<Student> students) {
-        Cell c = STUDENTS_SHEET.getRow(0).getCell(1);
         String[] headers = new String[Student.COLUMN_COUNT - 3];
 
         headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
@@ -125,14 +123,13 @@ public class StudentsUtil {
         }
 
         ArrayList<Object[]> data = new ArrayList<>();
-        for (int i = 0; i < students.size(); i++) {
-            Student s = students.get(i);
+        for (Student s : students) {
             Object[] rowArray = new Object[Student.COLUMN_COUNT - 5];
             rowArray[0] = s.getId();
             rowArray[1] = s.getFullName();
             rowArray[2] = s.getMotherName();
-            rowArray[3] = s.getFormatedBirthDate();
-            rowArray[4] = s.getIdentitiyNumber();
+            rowArray[3] = s.getBirthDate();
+            rowArray[4] = s.getIdentityNumber();
             rowArray[5] = s.getGuardianName();
             rowArray[6] = s.getGuardianJob();
             rowArray[7] = s.getGuardianPhone();
@@ -154,13 +151,6 @@ public class StudentsUtil {
                 return false;
             }
         };
-    }
-
-    public static DefaultComboBoxModel getcitizenOrRefugeeAsComboBox() {
-        return new DefaultComboBoxModel(new String[]{"مواطن", "لاجئ", "غير ذلك"});
-    }
-
-    private StudentsUtil() {
     }
 
 }

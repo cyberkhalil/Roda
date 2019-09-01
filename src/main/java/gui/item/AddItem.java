@@ -81,17 +81,17 @@ public class AddItem extends javax.swing.JFrame {
 
         itemNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         itemNameLbl.setForeground(new java.awt.Color(0, 51, 153));
-        itemNameLbl.setText("اسم العنصر :");
+        itemNameLbl.setText("اسم العنصر");
 
         itemNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         itemPriceLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         itemPriceLbl.setForeground(new java.awt.Color(0, 51, 153));
-        itemPriceLbl.setText("سعر العنصر :");
+        itemPriceLbl.setText("سعر العنصر");
 
         itemDescLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         itemDescLbl.setForeground(new java.awt.Color(0, 51, 153));
-        itemDescLbl.setText("الوصف :");
+        itemDescLbl.setText("الوصف");
 
         itemDescTa.setColumns(20);
         itemDescTa.setRows(5);
@@ -110,7 +110,7 @@ public class AddItem extends javax.swing.JFrame {
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addItemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(itemNameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                        .addComponent(itemNameTf)
                         .addComponent(jScrollPane1))
                     .addComponent(itemPriceSp, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)

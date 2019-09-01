@@ -1,34 +1,25 @@
 package util.gui;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.text.JTextComponent;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import util.Random;
 import util.Statics;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class GUI_Util {
 
@@ -68,7 +59,7 @@ public class GUI_Util {
     }
 
     public static void writeToExcell(JTable table, String path)
-            throws FileNotFoundException, IOException {
+            throws IOException {
         Workbook wb = new XSSFWorkbook(); //Excell workbook
         Sheet sheet = wb.createSheet(); //WorkSheet
         Row row = sheet.createRow(2); //Row created at line 3
@@ -109,10 +100,6 @@ public class GUI_Util {
         return option.substring(i1 + 1, i2);
     }
 
-    public static ImageIcon getImageIconFromCell(Cell cell) {
-        return getImageIconFromCellString(cell.getStringCellValue());
-    }
-
     public static ImageIcon getImageIconFromCellString(String s) {
         if (isImageCellString(s)) {
             String imgName = s.substring(5, s.length() - 1);
@@ -137,10 +124,6 @@ public class GUI_Util {
         return "{img:" + output + "}";
     }
 
-    public static boolean isImageCell(Cell c) {
-        return isImageCellString(c.getRichStringCellValue().toString());
-    }
-
     public static boolean isImageCellString(String s) {
         return s.startsWith("{img:") && s.endsWith("}");
     }
@@ -155,15 +138,6 @@ public class GUI_Util {
         } else {
             return tc.getText();
         }
-    }
-
-    public static boolean AllTextBetweenBrackets(JTextComponent... tc) {
-        for (JTextComponent jTextComponent : tc) {
-            if (!Statics.stringBetweenBrackets(jTextComponent.getText())) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static boolean AnyTextBetweenBrackets(JTextComponent... tc) {
@@ -193,22 +167,6 @@ public class GUI_Util {
             @Override
             public void windowClosed(WindowEvent e) {
                 button.setEnabled(true);
-            }
-        });
-    }
-
-    public static void link_2frames_to_button(JFrame frame1, JFrame frame2, JButton button) {
-        button.setEnabled(false);
-        frame1.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                button.setEnabled(!frame2.isActive());
-            }
-        });
-        frame2.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                button.setEnabled(!frame1.isVisible());
             }
         });
     }
@@ -268,49 +226,48 @@ public class GUI_Util {
         return new ImageIcon(setImageToSize(ic.getImage(), width, height));
     }
 
-    public static abstract interface DoSomethingWithSpinner {
+    public interface DoSomethingWithSpinner {
 
         /**
          * @param spinnerValue the value of the spinner
          * @return true to close or false to not close
          */
-        abstract boolean doSomething(double spinnerValue);
+        boolean doSomething(double spinnerValue);
     }
 
-    public static abstract interface DoSomethingWithComboBox {
+    public interface DoSomethingWithComboBox {
 
         /**
          * @param choice
          * @return true to close or false to not close
          */
-        abstract boolean doSomething(String choice);
+        boolean doSomething(String choice);
     }
 
-    public static abstract interface DoSomethingWithDatePicker {
+    public interface DoSomethingWithDatePicker {
 
         /**
          * @param DateInMillis
          * @return true to close or false to not close
          */
-        abstract boolean doSomething(long DateInMillis);
+        boolean doSomething(long DateInMillis);
     }
 
-    public static abstract interface DoSomethingWithTextAndSpinner {
+    public interface DoSomethingWithTextAndSpinner {
 
         /**
-         *
          * @param text
          * @param value
          * @return true to close or false to not close
          */
-        abstract boolean doSomething(String text, double value);
+        boolean doSomething(String text, double value);
     }
 
-    public static abstract interface UpdateTableOperation {
+    public interface UpdateTableOperation {
 
         /**
          * @param table
          */
-        abstract void updateTable(JTable table);
+        void updateTable(JTable table);
     }
 }

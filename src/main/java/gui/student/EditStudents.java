@@ -132,12 +132,12 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("رقم الطالب :");
+        jLabel1.setText("رقم الطالب");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("اسم الطالب :");
+        jLabel2.setText("اسم الطالب");
 
         studentMotherNameTf.setEditable(false);
         studentMotherNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -145,7 +145,7 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("اسم الأم :");
+        jLabel3.setText("اسم الأم");
 
         studentBirthDateTf.setEditable(false);
         studentBirthDateTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -153,7 +153,7 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("تاريخ الميلاد :");
+        jLabel4.setText("تاريخ الميلاد");
 
         studentIdentitiyNumberTf.setEditable(false);
         studentIdentitiyNumberTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -161,7 +161,7 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("رقم الهوية :");
+        jLabel5.setText("رقم الهوية");
 
         studentGuardianNameTf.setEditable(false);
         studentGuardianNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -169,7 +169,7 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("اسم ولي الأمر :");
+        jLabel6.setText("اسم ولي الأمر");
 
         studentPhoneNumberTf.setEditable(false);
         studentPhoneNumberTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -177,7 +177,7 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 153));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("رقم الهاتف :");
+        jLabel7.setText("رقم الهاتف");
 
         studentCourseTf.setEditable(false);
         studentCourseTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -185,12 +185,12 @@ public class EditStudents extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("صف الطالب :");
+        jLabel8.setText("صف الطالب");
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 153));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("رصيد الطالب :");
+        jLabel9.setText("رصيد الطالب");
 
         studentBalanceTf.setEditable(false);
         studentBalanceTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -525,7 +525,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "الاسم الأول للطالب:",
+        String name = (String) JOptionPane.showInputDialog(rootPane, "الاسم الأول للطالب",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getFirstName());
 
@@ -549,7 +549,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم أب الطالب :",
+        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم أب الطالب",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getFatherName());
 
@@ -573,7 +573,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم جد الطالب :",
+        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم جد الطالب",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getGrandFatherName());
 
@@ -597,7 +597,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم عائلة الطالب :",
+        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم عائلة الطالب",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getLastName());
 
@@ -621,7 +621,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم أم الطالب :",
+        String name = (String) JOptionPane.showInputDialog(rootPane, "اسم أم الطالب",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getMotherName());
 
@@ -645,7 +645,7 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteDatePicker("تعديل تاريخ الميلاد", "تاريخ الميلاد :", "عدل التاريخ",
+        GUI_Util.promoteDatePicker("تعديل تاريخ الميلاد", "تاريخ الميلاد", "عدل التاريخ",
                 (DateInMillis) -> {
                     try {
                         selectedStudent.setBirthDate(new Date(DateInMillis));
@@ -664,27 +664,27 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String number = (String) JOptionPane.showInputDialog(rootPane, "رقم الهوية :",
+        String number = (String) JOptionPane.showInputDialog(rootPane, "رقم الهوية",
                 "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null,
-                selectedStudent.getIdentitiyNumber());
+                selectedStudent.getIdentityNumber());
 
-        if (number == null) {
-            return;
+        if (number == null) {   //return
         } else if (number.trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون رقم الهوية فارغاً");
             setIdentitiyNumberBtnActionPerformed(evt);
-        } else if (!number.matches("^[0-9]")) {
+        } else if (!number.matches("[0-9]{9}")) {
             JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون رقم الهوية من 9 أرقام فقط!");
             setIdentitiyNumberBtnActionPerformed(evt);
-        }
+        } else {
 
-        try {
-            selectedStudent.setIdentitiyNumber(number);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهوية");
-            System.err.println(ex);
+            try {
+                selectedStudent.setIdentityNumber(number);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهوية");
+                System.err.println(ex);
+            }
+            updateTableAndDataPnl();
         }
-        updateTableAndDataPnl();
     }//GEN-LAST:event_setIdentitiyNumberBtnActionPerformed
 
     private void setGuardianNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setGuardianNameBtnActionPerformed
@@ -743,23 +743,22 @@ public class EditStudents extends javax.swing.JFrame {
                 "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getGuardianPhone());
 
-        if (number == null) {
-            return;
+        if (number == null) {   // return
         } else if (number.trim().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون رقم الهاتف فارغاً");
             setGuardianPhoneBtnActionPerformed(evt);
-        } else if (!number.matches("^[0-9]")) {
+        } else if (!number.matches("[0-9]{10}")) {
             JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون رقم الهاتف من 10 أرقام فقط!");
             setGuardianPhoneBtnActionPerformed(evt);
+        } else {
+            try {
+                selectedStudent.setGuardianPhone(number);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهاتف");
+                System.err.println(ex);
+            }
+            updateTableAndDataPnl();
         }
-
-        try {
-            selectedStudent.setGuardianPhone(number);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهاتف");
-            System.err.println(ex);
-        }
-        updateTableAndDataPnl();
     }//GEN-LAST:event_setGuardianPhoneBtnActionPerformed
 
     private void setSitizenOrRefugeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setSitizenOrRefugeeBtnActionPerformed
@@ -961,8 +960,8 @@ public class EditStudents extends javax.swing.JFrame {
             studentdTf.setText(String.valueOf(selectedStudent.getId()));
             studentNameTf.setText(selectedStudent.getFullName());
             studentMotherNameTf.setText(selectedStudent.getMotherName());
-            studentBirthDateTf.setText(selectedStudent.getFormatedBirthDate());
-            studentIdentitiyNumberTf.setText(selectedStudent.getIdentitiyNumber());
+            studentBirthDateTf.setText(selectedStudent.getBirthDate());
+            studentIdentitiyNumberTf.setText(selectedStudent.getIdentityNumber());
             studentGuardianNameTf.setText(selectedStudent.getGuardianName());
             studentPhoneNumberTf.setText(selectedStudent.getGuardianPhone());
             Course c = new Course(selectedStudent.getCourseId());

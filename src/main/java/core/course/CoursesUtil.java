@@ -1,17 +1,20 @@
 package core.course;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import static util.Statics.COURSES_SHEET;
-import static util.Statics.cellIsNull0OrBlank;
-import static util.Statics.updateSheet;
 import util.gui.GUI_Util;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static util.Statics.*;
+
 public class CoursesUtil {
+
+    private CoursesUtil() {
+    }
 
     public static void createCourse(String name, String teacherName, String year)
             throws IOException {
@@ -31,8 +34,8 @@ public class CoursesUtil {
         return GUI_Util.buildTableModel(getCoursesAsRows(), Course.COLUMN_COUNT);
     }
 
-    public static DefaultComboBoxModel getYearsAsComboBox() {
-        return new DefaultComboBoxModel(new String[]{"أريد إدخال نصاً مختلفاً", "بستان", "تمهيدي"});
+    public static DefaultComboBoxModel<String> getYearsAsComboBox() {
+        return new DefaultComboBoxModel<>(new String[]{"أريد إدخال نصاً مختلفاً", "بستان", "تمهيدي"});
     }
 
     public static DefaultComboBoxModel getCoursesAsComboBox() {
@@ -51,8 +54,5 @@ public class CoursesUtil {
             rows.add(row);
         }
         return rows;
-    }
-
-    private CoursesUtil() {
     }
 }

@@ -307,7 +307,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x637;&#x627;&#x644;&#x628; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x637;&#x627;&#x644;&#x628;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="studentFirstNameTf">
@@ -348,7 +348,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x647;&#x648;&#x64a;&#x629; :"/>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x647;&#x648;&#x64a;&#x629;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="studentIdentitiyNumberFtf">
@@ -408,7 +408,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x627;&#x631;&#x64a;&#x62e; &#x627;&#x644;&#x645;&#x64a;&#x644;&#x627;&#x62f; :"/>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x627;&#x631;&#x64a;&#x62e; &#x627;&#x644;&#x645;&#x64a;&#x644;&#x627;&#x62f;"/>
           </Properties>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="studentBirthDateDp">
@@ -479,7 +479,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x645;&#x639;&#x644;&#x648;&#x645;&#x627;&#x62a; &#x648;&#x644;&#x64a; &#x627;&#x644;&#x623;&#x645;&#x631; :"/>
+            <Property name="text" type="java.lang.String" value="&#x645;&#x639;&#x644;&#x648;&#x645;&#x627;&#x62a; &#x648;&#x644;&#x64a; &#x627;&#x644;&#x623;&#x645;&#x631;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="studentGruadianNameTf">
@@ -517,7 +517,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x631;&#x642;&#x645; &#x647;&#x627;&#x62a;&#x641; &#x648;&#x644;&#x64a; &#x627;&#x644;&#x623;&#x645;&#x631; :"/>
+            <Property name="text" type="java.lang.String" value="&#x631;&#x642;&#x645; &#x647;&#x627;&#x62a;&#x641; &#x648;&#x644;&#x64a; &#x627;&#x644;&#x623;&#x645;&#x631;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="studentCourseCb">
@@ -538,7 +538,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x635;&#x641; &#x627;&#x644;&#x637;&#x627;&#x644;&#x628; :"/>
+            <Property name="text" type="java.lang.String" value="&#x635;&#x641; &#x627;&#x644;&#x637;&#x627;&#x644;&#x628;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="studentCourseEnabled">

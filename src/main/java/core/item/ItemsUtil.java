@@ -1,17 +1,20 @@
 package core.item;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import static util.Statics.ITEMS_SHEET;
-import static util.Statics.cellIsNull0OrBlank;
-import static util.Statics.updateSheet;
 import util.gui.GUI_Util;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static util.Statics.*;
+
 public class ItemsUtil {
+
+    private ItemsUtil() {
+    }
 
     public static void createItem(String name, double price, String description)
             throws IOException {
@@ -47,9 +50,6 @@ public class ItemsUtil {
             rows.add(row);
         }
         return rows;
-    }
-
-    private ItemsUtil() {
     }
 
 }

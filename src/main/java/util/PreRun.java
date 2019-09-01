@@ -1,21 +1,23 @@
 package util;
 
 import org.apache.commons.io.FileUtils;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import static util.Statics.PROGRAM_FILES;
-import static util.Statics.PROGRAM_SHEET_FILES;
-import static util.Statics.STUDENTS_FILE;
-import static util.Statics.PROGRAM_FOLDERS;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import static util.Statics.*;
 
 public class PreRun {
+
+    private PreRun() {
+    }
 
     public static void CheckAndPrepare() throws IOException {
         if (!isPrepared()) {
@@ -47,13 +49,13 @@ public class PreRun {
     }
 
     public static void prepare() throws IOException {
-        // create non-exsisted foilders
+        // create non-existed folders
         for (File file : PROGRAM_FOLDERS) {
             if (!file.exists()) {
                 file.mkdirs();
             }
         }
-        // create non-exsisted sheets
+        // create non-existed sheets
         for (File file : PROGRAM_SHEET_FILES) {
             if (!file.exists()) {
                 Workbook wb = new HSSFWorkbook();
@@ -109,7 +111,7 @@ public class PreRun {
                 }
             }
         }
-        // create non-exsisted files
+        // create non-existed files
         for (File file : PROGRAM_FILES) {
             if (!file.exists()) {
                 if (file == Statics.NULL_IMAGE_FILE) {
@@ -120,9 +122,6 @@ public class PreRun {
                 }
             }
         }
-    }
-
-    private PreRun() {
     }
 
 }

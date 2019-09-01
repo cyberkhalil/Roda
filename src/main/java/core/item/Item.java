@@ -2,22 +2,23 @@ package core.item;
 
 import core.student.Student;
 import core.student.StudentsUtil;
+import org.apache.poi.ss.usermodel.Row;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JTable;
-import org.apache.poi.ss.usermodel.Row;
+
 import static util.Statics.ITEMS_SHEET;
 import static util.Statics.updateSheet;
 
 public class Item {
 
+    final static int COLUMN_COUNT = 4;
     private final int id;
+    private final Row row;
     private String name;
     private double price;
     private String description;
-
-    private final Row row;
-    public final static int COLUMN_COUNT = 4;
 
     public Item(int id) {
         this.row = ITEMS_SHEET.getRow(id + 1);
@@ -35,35 +36,14 @@ public class Item {
         return name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void renderStudentsToTable(JTable table) {
-        table.setModel(StudentsUtil.getStudentsAsTable(getStudents()));
-    }
-
-    public int getStudentsNumber() {
-        return getStudents().size();
-    }
-
-    public ArrayList<Student> getStudents() {
-        ArrayList<Student> itemStudents = new ArrayList<>();
-        StudentsUtil.getStudents().stream().filter(
-                (s) -> (s.getItems().contains(this))).forEachOrdered((s) -> {
-                    itemStudents.add(s);
-                });
-        return itemStudents;
-    }
-
     public void setName(String name) throws IOException {
         this.row.getCell(1).setCellValue(name);
         updateSheet(ITEMS_SHEET);
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setPrice(double price) throws IOException {
@@ -72,10 +52,25 @@ public class Item {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) throws IOException {
         this.row.getCell(3).setCellValue(description);
         updateSheet(ITEMS_SHEET);
         this.description = description;
+    }
+
+    public void renderStudentsToTable(JTable table) {
+        table.setModel(StudentsUtil.getStudentsAsTable(getStudents()));
+    }
+
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> itemStudents = new ArrayList<>();
+        StudentsUtil.getStudents().stream().filter(
+                (s) -> (s.getItems().contains(this))).forEachOrdered(itemStudents::add);
+        return itemStudents;
     }
 
     public void delete() throws IOException {
@@ -88,12 +83,7 @@ public class Item {
         this.description = null;
         this.price = -1;
         StudentsUtil.getStudents().stream().filter((s) -> (s.getItems().contains(this)))
-                .forEachOrdered((s) -> {
-                    s.removeItem(this);
-                });
+                .forEachOrdered((s) -> s.removeItem(this));
     }
 
-    public boolean isValid() {
-        return !row.getZeroHeight();
-    }
 }

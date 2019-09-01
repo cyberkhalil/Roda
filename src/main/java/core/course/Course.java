@@ -2,27 +2,25 @@ package core.course;
 
 import core.student.Student;
 import core.student.StudentsUtil;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import static util.Statics.COURSES_SHEET;
-import static util.Statics.STUDENTS_SHEET;
-import static util.Statics.cellIsNull0OrBlank;
-import static util.Statics.updateSheet;
 import util.gui.GUI_Util;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static util.Statics.*;
 
 public class Course {
 
+    final static int COLUMN_COUNT = 4;
     private final int id;
+    private final Row row;
     private String name;
     private String teacherName;
     private String year;
-
-    private final Row row;
-    public final static int COLUMN_COUNT = 4;
 
     public Course(int id) {
         this.row = COURSES_SHEET.getRow(id + 1);
@@ -40,21 +38,30 @@ public class Course {
         return name;
     }
 
+    public void setName(String name) throws IOException {
+        this.row.getCell(1).setCellValue(name);
+        updateSheet(COURSES_SHEET);
+        this.name = name;
+    }
+
     public String getTeacherName() {
         return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) throws IOException {
+        this.row.getCell(2).setCellValue(teacherName);
+        updateSheet(COURSES_SHEET);
+        this.teacherName = teacherName;
     }
 
     public String getYear() {
         return year;
     }
 
-    public int getStudentsNumber() {
-        ArrayList<Student> students = StudentsUtil.getStudents();
-        students.stream().filter(
-                (student) -> (student.getCourseId() == id)).forEachOrdered((student) -> {
-                    students.remove(student);
-                });
-        return students.size();
+    public void setYear(String year) throws IOException {
+        this.row.getCell(3).setCellValue(year);
+        updateSheet(COURSES_SHEET);
+        this.year = year;
     }
 
     public void renderStudentsToTable(JTable table) {
@@ -108,24 +115,6 @@ public class Course {
                 return false;
             }
         });
-    }
-
-    public void setName(String name) throws IOException {
-        this.row.getCell(1).setCellValue(name);
-        updateSheet(COURSES_SHEET);
-        this.name = name;
-    }
-
-    public void setTeacherName(String teacherName) throws IOException {
-        this.row.getCell(2).setCellValue(teacherName);
-        updateSheet(COURSES_SHEET);
-        this.teacherName = teacherName;
-    }
-
-    public void setYear(String year) throws IOException {
-        this.row.getCell(3).setCellValue(year);
-        updateSheet(COURSES_SHEET);
-        this.year = year;
     }
 
     public void delete() throws IOException {

@@ -131,7 +131,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         studentNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentNameLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentNameLbl.setText("اسم الطالب :");
+        studentNameLbl.setText("اسم الطالب");
 
         studentFirstNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         studentFirstNameTf.setText("(الاسم الأول)");
@@ -150,7 +150,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         studentIdentityLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentIdentityLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentIdentityLbl.setText("الهوية :");
+        studentIdentityLbl.setText("الهوية");
 
         studentIdentitiyNumberFtf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         studentIdentitiyNumberFtf.setText("(رقم هوية الطالب)");
@@ -178,7 +178,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         studentBirthLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentBirthLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentBirthLbl.setText("تاريخ الميلاد :");
+        studentBirthLbl.setText("تاريخ الميلاد");
 
         imgPnl.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -220,7 +220,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         studentGuardianInfoLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentGuardianInfoLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentGuardianInfoLbl.setText("معلومات ولي الأمر :");
+        studentGuardianInfoLbl.setText("معلومات ولي الأمر");
 
         studentGruadianNameTf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         studentGruadianNameTf.setText("(الاسم ولي الأمر)");
@@ -241,13 +241,13 @@ public class AddStudent extends javax.swing.JFrame {
 
         studentGruadianPhoneLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentGruadianPhoneLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentGruadianPhoneLbl.setText("رقم هاتف ولي الأمر :");
+        studentGruadianPhoneLbl.setText("رقم هاتف ولي الأمر");
 
         studentCourseCb.setModel(CoursesUtil.getCoursesAsComboBox());
 
         studentCourseLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         studentCourseLbl.setForeground(new java.awt.Color(0, 51, 153));
-        studentCourseLbl.setText("صف الطالب :");
+        studentCourseLbl.setText("صف الطالب");
 
         studentCourseEnabled.setSelected(true);
         studentCourseEnabled.setText("مفعل");

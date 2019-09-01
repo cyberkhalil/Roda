@@ -80,22 +80,22 @@ public class EditCourses extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("رقم الصف :");
+        jLabel1.setText("رقم الصف");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("اسم الصف :");
+        jLabel2.setText("اسم الصف");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("اسم المدرسة :");
+        jLabel3.setText("اسم المدرسة");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("السن :");
+        jLabel4.setText("السن");
 
         javax.swing.GroupLayout courseDataPnlLayout = new javax.swing.GroupLayout(courseDataPnl);
         courseDataPnl.setLayout(courseDataPnlLayout);
@@ -291,7 +291,7 @@ public class EditCourses extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String courseName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للصف :",
+        String courseName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للصف",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null, selectedCourse.getName());
 
         if (courseName == null) {
@@ -314,7 +314,7 @@ public class EditCourses extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String teacherName = (String) JOptionPane.showInputDialog(rootPane, "اسم المدرسة الجديد :",
+        String teacherName = (String) JOptionPane.showInputDialog(rootPane, "اسم المدرسة الجديد ",
                 "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedCourse.getTeacherName());
 
@@ -370,10 +370,10 @@ public class EditCourses extends javax.swing.JFrame {
             return;
         }
         GUI_Util.link_frame_to_button(GUI_Util.promoteComboBox("تغيير سن الصف",
-                "السن الجديد للصف سيكون :", "تعيين السن الجديد",
+                "السن الجديد للصف سيكون ", "تعيين السن الجديد",
                 CoursesUtil.getYearsAsComboBox(), (year) -> {
             if ("أريد إدخال نصاً مختلفاً".equals(year)) {
-                year = (String) JOptionPane.showInputDialog(rootPane, "السن الجديد :",
+                year = (String) JOptionPane.showInputDialog(rootPane, "السن الجديد ",
                         "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null, null);
             }
             try {

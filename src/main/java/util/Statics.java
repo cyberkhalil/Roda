@@ -1,14 +1,15 @@
 package util;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
 
 public class Statics {
 
@@ -45,6 +46,9 @@ public class Statics {
         if (PreRun.isPrepared()) {
             setUpSheets();
         }
+    }
+
+    private Statics() {
     }
 
     private static void setUpFiles() {
@@ -91,9 +95,10 @@ public class Statics {
     }
 
     public static String[] getAvailableYears() {
-        if (RODA_PATH.list() == null || RODA_PATH.list().length == 0) {
-            int Currentyear = Calendar.getInstance().get(Calendar.YEAR);
-            return new String[]{Currentyear + "-" + (Currentyear + 1)};
+        String[] list = RODA_PATH.list();
+        if (list == null || list.length == 0) {
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            return new String[]{currentYear + "-" + (currentYear + 1)};
         } else {
             return RODA_PATH.list();
         }
@@ -142,9 +147,6 @@ public class Statics {
 
     public static boolean stringBetweenBrackets(String s) {
         return s.startsWith("(") && s.endsWith(")");
-    }
-
-    private Statics() {
     }
 
 }
