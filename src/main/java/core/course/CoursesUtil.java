@@ -35,7 +35,7 @@ public class CoursesUtil {
     }
 
     public static DefaultComboBoxModel<String> getYearsAsComboBox() {
-        return new DefaultComboBoxModel<>(new String[]{"أريد إدخال نصاً مختلفاً", "بستان", "تمهيدي"});
+        return new DefaultComboBoxModel<>(new String[]{ANOTHER_AGE_TXT, BOSTAN_TXT, TAMHEDY_TXT});
     }
 
     public static DefaultComboBoxModel getCoursesAsComboBox() {

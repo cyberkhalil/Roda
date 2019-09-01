@@ -2,10 +2,14 @@ package gui.item;
 
 import core.item.Item;
 import core.item.ItemsUtil;
+import core.student.Student;
+import core.student.StudentsUtil;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import util.Statics;
 import util.gui.GUI_Util;
 
 public class EditItems extends javax.swing.JFrame {
@@ -40,6 +44,7 @@ public class EditItems extends javax.swing.JFrame {
         setDescBtn = new javax.swing.JButton();
         displayItemStudentsBtn = new javax.swing.JButton();
         deleteItemBtn = new javax.swing.JButton();
+        addStudentsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -191,6 +196,14 @@ public class EditItems extends javax.swing.JFrame {
             }
         });
 
+        addStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addStudentsBtn.setText("إضافة طلاب للعنصر");
+        addStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout itemButtonsPnlLayout = new javax.swing.GroupLayout(itemButtonsPnl);
         itemButtonsPnl.setLayout(itemButtonsPnlLayout);
         itemButtonsPnlLayout.setHorizontalGroup(
@@ -198,17 +211,15 @@ public class EditItems extends javax.swing.JFrame {
             .addGroup(itemButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(itemButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(setPriceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayItemStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(itemButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(setDescBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setNameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, itemButtonsPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteItemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                    .addComponent(setDescBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteItemBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setNameBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         itemButtonsPnlLayout.setVerticalGroup(
             itemButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +233,9 @@ public class EditItems extends javax.swing.JFrame {
                     .addComponent(displayItemStudentsBtn)
                     .addComponent(setDescBtn))
                 .addGap(15, 15, 15)
-                .addComponent(deleteItemBtn)
+                .addGroup(itemButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteItemBtn)
+                    .addComponent(addStudentsBtn))
                 .addGap(20, 20, 20))
         );
 
@@ -262,7 +275,7 @@ public class EditItems extends javax.swing.JFrame {
                     .addComponent(itemButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(itemDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addComponent(itemsSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
+                .addComponent(itemsSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -298,21 +311,23 @@ public class EditItems extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String itemName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للعنصر",
-                "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null, selectedItem.getName());
+        String itemName = (String) JOptionPane.showInputDialog(rootPane, Statics.THE_NAME_TXT
+                + Statics.SPACE + "الجديد للعنصر", "أعد التسمية", JOptionPane.QUESTION_MESSAGE,
+                null, null, selectedItem.getName());
 
         if (itemName == null) {
             return;
         } else if (itemName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedItem.setName(itemName);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تسمية العنصر بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedItem.setName(itemName);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تسمية العنصر بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -355,24 +370,27 @@ public class EditItems extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String desc = (String) JOptionPane.showInputDialog(rootPane, "الوصف الجديد للعنصر",
-                "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
-                selectedItem.getDescription());
+        String desc = (String) JOptionPane.showInputDialog(rootPane, Statics.THE_DESC_TXT
+                + Statics.SPACE + "الجديد للعنصر",
+                "أعد التسمية", JOptionPane.QUESTION_MESSAGE,
+                null, null,
+                selectedItem.getDescription()
+        );
 
         if (desc == null) {
-            return;
         } else if (desc.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الوصف فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_DESC_EXC_MSG);
             setNameBtnActionPerformed(evt);
+        } else {
+            try {
+                selectedItem.setDescription(desc);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء توصيف العنصر بهذا"
+                        + Statics.SPACE + Statics.THE_DESC_TXT);
+                System.err.println(ex);
+            }
+            updateTableAndDataPnl();
         }
-
-        try {
-            selectedItem.setDescription(desc);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء توصيف العنصر بهذا الوصف");
-            System.err.println(ex);
-        }
-        updateTableAndDataPnl();
     }//GEN-LAST:event_setDescBtnActionPerformed
 
     private void displayItemStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayItemStudentsBtnActionPerformed
@@ -386,7 +404,44 @@ public class EditItems extends javax.swing.JFrame {
         }), displayItemStudentsBtn);
     }//GEN-LAST:event_displayItemStudentsBtnActionPerformed
 
+    private void addStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentsBtnActionPerformed
+        ArrayList<Student> students = StudentsUtil.getStudents();
+        for (Student student : students) {
+            if (student.getItems().contains(selectedItem)) {
+                students.remove(student);
+            }
+        }
+        GUI_Util.promotSelectionTable(StudentsUtil.getStudentsAsTable(students),
+                "إضافة طلاب للعنصر",
+                "قم بإختيار بتعليم الطلاب المراد إضافة العنصر لهم ثم اضغط على زر الإضافة",
+                "إضافة الطلاب", (table) -> {
+                    try {
+                        int[] rowsIndexes = table.getSelectedRows();
+                        for (int rowIndex : rowsIndexes) {
+                            int id = (int) table.getValueAt(rowIndex, 0);
+
+                            try {
+                                Student s = new Student(id);
+                                s.addItem(selectedItem.getId());
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(table, Statics.CANNOT_TXT
+                                        + "إضافة هذا العنصر للطالب صاحب" + Statics.SPACE
+                                        + Statics.THE_NUMBER_TXT + Statics.SPACE + id);
+                                System.err.println(ex);
+                            }
+                        }
+                        JOptionPane.showMessageDialog(table, "تم إضافة العنصر للطلاب بنجاح !");
+                        return true;
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(table, "لقد حصل خطأ في إضافة الطلاب للعنصر !");
+                        System.err.println(ex);
+                        return false;
+                    }
+                });
+    }//GEN-LAST:event_addStudentsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addStudentsBtn;
     private javax.swing.JButton deleteItemBtn;
     private javax.swing.JButton displayItemStudentsBtn;
     private javax.swing.JLabel imgLbl;

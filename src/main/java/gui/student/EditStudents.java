@@ -525,22 +525,23 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String name = (String) JOptionPane.showInputDialog(rootPane, "الاسم الأول للطالب",
-                "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null,
-                selectedStudent.getFirstName());
+        String name = (String) JOptionPane.showInputDialog(rootPane, Statics.THE_NAME_TXT
+                + Statics.SPACE + "الأول للطالب", "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null,
+                null, selectedStudent.getFirstName());
 
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setFirstNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setFirstName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setFirstName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setFirstNameBtnActionPerformed
@@ -556,15 +557,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setFatherNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setFatherName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setFatherName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setFatherNameBtnActionPerformed
@@ -580,15 +582,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setGrandFatherNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setGrandFatherName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setGrandFatherName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setGrandFatherNameBtnActionPerformed
@@ -604,15 +607,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setLastNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setLastName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setLastName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setLastNameBtnActionPerformed
@@ -628,15 +632,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setMotherNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setMotherName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setMotherName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setMotherNameBtnActionPerformed
@@ -664,23 +669,24 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String number = (String) JOptionPane.showInputDialog(rootPane, "رقم الهوية",
+        String number = (String) JOptionPane.showInputDialog(rootPane, Statics.IDENTITY_NUMBER_TXT,
                 "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getIdentityNumber());
 
         if (number == null) {   //return
         } else if (number.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون رقم الهوية فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_IDENTITY_EXC_MSG);
             setIdentitiyNumberBtnActionPerformed(evt);
         } else if (!number.matches("[0-9]{9}")) {
-            JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون رقم الهوية من 9 أرقام فقط!");
+            JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون " + Statics.IDENTITY_NUMBER_TXT
+                    + " من 9 أرقام فقط!");
             setIdentitiyNumberBtnActionPerformed(evt);
         } else {
-
             try {
                 selectedStudent.setIdentityNumber(number);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهوية");
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين "
+                        + Statics.IDENTITY_NUMBER_TXT);
                 System.err.println(ex);
             }
             updateTableAndDataPnl();
@@ -698,15 +704,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (name == null) {
             return;
         } else if (name.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setGuardianNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setGuardianName(name);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setGuardianName(name);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setGuardianNameBtnActionPerformed
@@ -722,15 +729,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (job == null) {
             return;
         } else if (job.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن تكون اسم الوظيفة فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_JOB_NAME_EXC_MSG);
             setGuardianJobBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setGuardianJob(job);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء وضع الوظيفة بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setGuardianJob(job);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء وضع الوظيفة بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setGuardianJobBtnActionPerformed
@@ -739,22 +747,24 @@ public class EditStudents extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String number = (String) JOptionPane.showInputDialog(rootPane, "رقم الهاتف",
+        String number = (String) JOptionPane.showInputDialog(rootPane, Statics.PHONE_NUMBER_TXT,
                 "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null,
                 selectedStudent.getGuardianPhone());
 
         if (number == null) {   // return
         } else if (number.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون رقم الهاتف فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_PHONE_EXC_MSG);
             setGuardianPhoneBtnActionPerformed(evt);
         } else if (!number.matches("[0-9]{10}")) {
-            JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون رقم الهاتف من 10 أرقام فقط!");
+            JOptionPane.showMessageDialog(rootPane, "يجب أن يتكون" + Statics.PHONE_NUMBER_TXT
+                    + " من 10 أرقام فقط!");
             setGuardianPhoneBtnActionPerformed(evt);
         } else {
             try {
                 selectedStudent.setGuardianPhone(number);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين رقم الهاتف");
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين "
+                        + Statics.PHONE_NUMBER_TXT);
                 System.err.println(ex);
             }
             updateTableAndDataPnl();
@@ -772,15 +782,16 @@ public class EditStudents extends javax.swing.JFrame {
         if (state == null) {
             return;
         } else if (state.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن تكون الحالة فارغة");
+            JOptionPane.showMessageDialog(rootPane, Statics.CANNOT_BEE_TXT + Statics.SPACE + "الحالة"
+                    + Statics.SPACE + Statics.EMPTYY_TXT);
             setSitizenOrRefugeeBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setCitizenOrRefugee(state);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين حالة مواطن/لاجئ");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setCitizenOrRefugee(state);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تعيين حالة مواطن/لاجئ");
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setSitizenOrRefugeeBtnActionPerformed
@@ -796,15 +807,15 @@ public class EditStudents extends javax.swing.JFrame {
         if (address == null) {
             return;
         } else if (address.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون العنوان فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_ADDRESS_EXC_MSG);
             setAddressBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedStudent.setAddress(address);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حصل خطأ أثناء تعيين العنوان");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedStudent.setAddress(address);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حصل خطأ أثناء تعيين العنوان");
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setAddressBtnActionPerformed
@@ -850,7 +861,7 @@ public class EditStudents extends javax.swing.JFrame {
                 updateTableAndDataPnl();
                 return true;
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "رقم الصف المدخل غير موجود !");
+                JOptionPane.showMessageDialog(rootPane, Statics.NUMBER_TXT + " الصف المدخل غير موجود !");
                 System.err.println(ex);
                 updateTableAndDataPnl();
                 return false;

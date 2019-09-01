@@ -10,6 +10,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import util.Statics;
 import util.gui.GUI_Util;
 import util.gui.JSystemFileChooser;
 
@@ -410,7 +411,7 @@ public class AddStudent extends javax.swing.JFrame {
         if (GUI_Util.AnyTextBetweenBrackets(studentFirstNameTf, studentFamilyNameTf,
                 studentFatherNameTf)) {
             JOptionPane.showMessageDialog(rootPane,
-                    "يجب أن يتم إدخال اسم الطالب والأب والعائلة على الأقل للتسجيل");
+                    "يجب أن يتم إدخال " + Statics.STUDENT_NAME_TXT + " والأب والعائلة على الأقل للتسجيل");
             return;
         }
         String motherName = GUI_Util.getTextOrEmpty(studentMotherNameTf);
@@ -434,7 +435,8 @@ public class AddStudent extends javax.swing.JFrame {
                 courseId = new Integer(GUI_Util.parseIdFromComboBoxOption(
                         studentCourseCb.getSelectedItem().toString()));
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "رقم الصف المدخل غير موجود !");
+                JOptionPane.showMessageDialog(rootPane, Statics.NUMBER_TXT + Statics.SPACE
+                        + "الصف المدخل غير موجود !");
             }
         }
         try {
@@ -481,7 +483,8 @@ public class AddStudent extends javax.swing.JFrame {
                 studentIdentitiyNumberFtf.setFormatterFactory(new DefaultFormatterFactory(
                         new MaskFormatter("#########")));
             } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(rootPane, "حصل خطأ في تحويل نمط رقم الهوية للأرقام");
+                JOptionPane.showMessageDialog(rootPane, "حصل خطأ في تحويل نمط" + Statics.SPACE
+                        + Statics.IDENTITY_NUMBER_TXT + Statics.SPACE + "للأرقام");
                 System.out.println(ex);
             }
         }
@@ -494,7 +497,8 @@ public class AddStudent extends javax.swing.JFrame {
                 studentGruadianPhoneNumberFtf.setFormatterFactory(new DefaultFormatterFactory(
                         new MaskFormatter("##########")));
             } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(rootPane, "حصل خطأ في تحويل نمط رقم الهاتف للأرقام");
+                JOptionPane.showMessageDialog(rootPane, "حصل خطأ في تحويل نمط" + Statics.SPACE
+                        + Statics.PHONE_TXT);
                 System.out.println(ex);
             }
         }

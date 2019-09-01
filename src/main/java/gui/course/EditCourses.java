@@ -4,6 +4,7 @@ import core.course.Course;
 import core.course.CoursesUtil;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import util.Statics;
 import util.gui.GUI_Util;
 
 public class EditCourses extends javax.swing.JFrame {
@@ -291,21 +292,23 @@ public class EditCourses extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String courseName = (String) JOptionPane.showInputDialog(rootPane, "الاسم الجديد للصف",
-                "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null, null, selectedCourse.getName());
+        String courseName = (String) JOptionPane.showInputDialog(rootPane, Statics.THE_NAME_TXT
+                + Statics.SPACE + "الجديد للصف", "أعد التسمية", JOptionPane.QUESTION_MESSAGE, null,
+                null, selectedCourse.getName());
 
         if (courseName == null) {
             return;
         } else if (courseName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون الاسم فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedCourse.setName(courseName);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تسمية الصف بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedCourse.setName(courseName);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء تسمية الصف بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -321,15 +324,16 @@ public class EditCourses extends javax.swing.JFrame {
         if (teacherName == null) {
             return;
         } else if (teacherName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "لا يمكن أن يكون اسم المدرسة فارغاً");
+            JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NAME_EXC_MSG);
             setTeacherNameBtnActionPerformed(evt);
-        }
-
-        try {
-            selectedCourse.setTeacherName(teacherName);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء إعادة التسمية بهذا الاسم");
-            System.err.println(ex);
+        } else {
+            try {
+                selectedCourse.setTeacherName(teacherName);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "لقد حدثت مشكلة أثناء إعادة التسمية بهذا"
+                        + Statics.SPACE + Statics.THE_NAME_TXT);
+                System.err.println(ex);
+            }
         }
         updateTableAndDataPnl();
     }//GEN-LAST:event_setTeacherNameBtnActionPerformed
@@ -372,7 +376,7 @@ public class EditCourses extends javax.swing.JFrame {
         GUI_Util.link_frame_to_button(GUI_Util.promoteComboBox("تغيير سن الصف",
                 "السن الجديد للصف سيكون ", "تعيين السن الجديد",
                 CoursesUtil.getYearsAsComboBox(), (year) -> {
-            if ("أريد إدخال نصاً مختلفاً".equals(year)) {
+            if (Statics.ANOTHER_AGE_TXT.equals(year)) {
                 year = (String) JOptionPane.showInputDialog(rootPane, "السن الجديد ",
                         "أعد التعيين", JOptionPane.QUESTION_MESSAGE, null, null, null);
             }

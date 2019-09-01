@@ -36,14 +36,29 @@ public class Item {
         return name;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     public void setName(String name) throws IOException {
         this.row.getCell(1).setCellValue(name);
         updateSheet(ITEMS_SHEET);
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public String getDescription() {
+        return description;
+    }
+
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> itemStudents = new ArrayList<>();
+        StudentsUtil.getStudents().stream().filter(
+                (s) -> (s.getItems().contains(this))).forEachOrdered(itemStudents::add);
+        return itemStudents;
+    }
+
+    public void renderStudentsToTable(JTable table) {
+        table.setModel(StudentsUtil.getStudentsAsTable(getStudents()));
     }
 
     public void setPrice(double price) throws IOException {
@@ -52,25 +67,10 @@ public class Item {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) throws IOException {
         this.row.getCell(3).setCellValue(description);
         updateSheet(ITEMS_SHEET);
         this.description = description;
-    }
-
-    public void renderStudentsToTable(JTable table) {
-        table.setModel(StudentsUtil.getStudentsAsTable(getStudents()));
-    }
-
-    public ArrayList<Student> getStudents() {
-        ArrayList<Student> itemStudents = new ArrayList<>();
-        StudentsUtil.getStudents().stream().filter(
-                (s) -> (s.getItems().contains(this))).forEachOrdered(itemStudents::add);
-        return itemStudents;
     }
 
     public void delete() throws IOException {

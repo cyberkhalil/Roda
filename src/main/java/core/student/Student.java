@@ -108,7 +108,7 @@ public class Student {
     }
 
     public String getFullName() {
-        return firstName + " " + fatherName + " " + grandFatherName + " " + lastName;
+        return firstName + SPACE + fatherName + SPACE + grandFatherName + SPACE + lastName;
     }
 
     public String getBirthDate() {
@@ -116,7 +116,7 @@ public class Student {
     }
 
     public void setBirthDate(Date birthDate) throws IOException {
-        String date = new SimpleDateFormat("YYYY-MM-dd").format(birthDate);
+        String date = SIMPLE_DF.format(birthDate);
         this.row.getCell(6).setCellValue(date);
         updateSheet(STUDENTS_SHEET);
         this.birthDate = date;
@@ -253,8 +253,8 @@ public class Student {
 
     public DefaultComboBoxModel getItemsAsComboBox() {
         ArrayList<String> list = new ArrayList<>();
-        getItems().forEach((item)
-                -> list.add(item.getName() + " (id=" + item.getId() + ")"));
+        getItems().forEach((item) -> list.add(item.getName() + COMBO_START
+                + item.getId() + RIGHT_BRKT));
         return new DefaultComboBoxModel<>(list.toArray());
     }
 
@@ -290,8 +290,8 @@ public class Student {
     public DefaultComboBoxModel getPurchasesAsComboBox() {
         ArrayList<String> list = new ArrayList<>();
         getPurchasesAsRows().forEach((r)
-                -> list.add(r.getCell(2).getNumericCellValue()
-                        + " (id=" + r.getCell(0).getNumericCellValue() + ")"));
+                -> list.add(r.getCell(2).getNumericCellValue() + COMBO_START
+                        + r.getCell(0).getNumericCellValue() + RIGHT_BRKT));
         return new DefaultComboBoxModel<>(list.toArray());
     }
 
@@ -376,7 +376,7 @@ public class Student {
         CourseRow.createCell(0).setCellValue(preValue + 1); //id
         CourseRow.createCell(1).setCellValue(id);
         CourseRow.createCell(2).setCellValue(i.getId());
-        CourseRow.createCell(3).setCellValue(new SimpleDateFormat("YYYY-MM-dd").format(new Date()));
+        CourseRow.createCell(3).setCellValue(SIMPLE_DF.format(new Date()));
         c.setCellValue(preValue + 1); // max value will get addition 1
         updateSheet(STUDENTS_ITEMS_SHEET);
     }
@@ -395,7 +395,7 @@ public class Student {
                 return;
             }
         }
-        throw new IllegalArgumentException("You can't remove item that student doesn't have");
+        throw new IllegalArgumentException(REMOVE_ITEM_EXC_MSG);
     }
 
     public void addPurchase(double money, String description) throws IOException {
@@ -406,7 +406,7 @@ public class Student {
         CourseRow.createCell(0).setCellValue(preValue + 1); //id
         CourseRow.createCell(1).setCellValue(id);
         CourseRow.createCell(2).setCellValue(money);
-        CourseRow.createCell(3).setCellValue(new SimpleDateFormat("YYYY-MM-dd").format(new Date()));
+        CourseRow.createCell(3).setCellValue(SIMPLE_DF.format(new Date()));
         CourseRow.createCell(4).setCellValue(description);
         c.setCellValue(preValue + 1); // max value will get addition 1
         updateSheet(STUDENTS_PURCHASES_SHEET);
@@ -423,7 +423,7 @@ public class Student {
                 return;
             }
         }
-        throw new IllegalArgumentException("لا يمكنك حذف عنصر من طالب لا يمتلكه");
+        throw new IllegalArgumentException(REMOVE_ITEM_EXC_MSG);
     }
 
     public boolean isValid() {

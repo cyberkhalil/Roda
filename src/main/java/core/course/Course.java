@@ -70,7 +70,7 @@ public class Course {
         String[] headers = new String[Student.COLUMN_COUNT - 3];
 
         headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
-        headers[1] = "اسم الطالب";
+        headers[1] = STUDENT_NAME_TXT;
         headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
         for (int i = 6; i < Student.COLUMN_COUNT; i++) {
             headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i).getRichStringCellValue()
@@ -85,7 +85,7 @@ public class Course {
             }
             Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
             rowArray[0] = r.getCell(0);
-            rowArray[1] = r.getCell(1) + " " + r.getCell(2) + " " + r.getCell(4) + " "
+            rowArray[1] = r.getCell(1) + SPACE + r.getCell(2) + SPACE + r.getCell(4) + SPACE
                     + r.getCell(5);
             rowArray[2] = r.getCell(3);
             for (int j = 6; j < Student.COLUMN_COUNT; j++) {

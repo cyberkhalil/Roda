@@ -51,7 +51,7 @@ public class StudentsUtil {
         String[] headers = new String[Student.COLUMN_COUNT - 3];
 
         headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
-        headers[1] = "اسم الطالب";
+        headers[1] = STUDENT_NAME_TXT;
         headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
         for (int i = 6; i < Student.COLUMN_COUNT; i++) {
             headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i)
@@ -66,8 +66,8 @@ public class StudentsUtil {
             }
             Object[] rowArray = new Object[Student.COLUMN_COUNT - 3];
             rowArray[0] = row.getCell(0);
-            rowArray[1] = row.getCell(1) + " " + row.getCell(2) + " " + row.getCell(4)
-                    + " " + row.getCell(5);
+            rowArray[1] = row.getCell(1) + SPACE + row.getCell(2) + SPACE + row.getCell(4) + SPACE
+                    + row.getCell(5);
             rowArray[2] = row.getCell(3);
             for (int j = 6; j < Student.COLUMN_COUNT; j++) {
                 rowArray[j - 3] = row.getCell(j);
@@ -112,10 +112,10 @@ public class StudentsUtil {
     }
 
     public static DefaultTableModel getStudentsAsTable(ArrayList<Student> students) {
-        String[] headers = new String[Student.COLUMN_COUNT - 3];
+        String[] headers = new String[Student.COLUMN_COUNT - 5];
 
         headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
-        headers[1] = "اسم الطالب";
+        headers[1] = STUDENT_NAME_TXT;
         headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
         for (int i = 6; i < Student.COLUMN_COUNT - 2; i++) {
             headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i)
@@ -123,7 +123,7 @@ public class StudentsUtil {
         }
 
         ArrayList<Object[]> data = new ArrayList<>();
-        for (Student s : students) {
+        students.stream().map((s) -> {
             Object[] rowArray = new Object[Student.COLUMN_COUNT - 5];
             rowArray[0] = s.getId();
             rowArray[1] = s.getFullName();
@@ -135,9 +135,11 @@ public class StudentsUtil {
             rowArray[7] = s.getGuardianPhone();
             rowArray[8] = s.getCitizenOrRefugee();
             rowArray[9] = s.getAddress();
-
+            return rowArray;
+        }).forEachOrdered((rowArray) -> {
             data.add(rowArray);
-        }
+        });
+
         return new DefaultTableModel(
                 data.toArray(new Object[data.size()][Student.COLUMN_COUNT - 3]), headers) {
             @Override

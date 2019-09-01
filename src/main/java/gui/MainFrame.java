@@ -49,7 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         GUI_Util.setUpRodaImgLbl(imgLbl);
         for (String availableYear : Statics.getAvailableYears()) {
-            if (availableYear.equals("Images")) {
+            if (availableYear.equals(Statics.IMGS_TXT)) {
                 continue;
             }
             yearCB.addItem(availableYear);
@@ -61,15 +61,14 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             PreRun.CheckAndPrepare();
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "حدث خطأ أثناء تنصيب البرنامج ,"
-                    + "الرجاء المحاولة من الجديد");
+            JOptionPane.showMessageDialog(null, Statics.PROGRAM_INSTALL_EXC_MSG);
             System.err.println(ex);
         }
 
         try {
             UIManager.setLookAndFeel(new WebLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
-            JOptionPane.showMessageDialog(null, "لا يمكن تشغيل ميزة الظهور بشكل مناسب");
+            JOptionPane.showMessageDialog(null, Statics.LOOK_AND_FEEL_EXC_MSG);
             System.err.println(ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
@@ -473,7 +472,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
             year = year.trim();
             if (year.isEmpty()) {
-                JOptionPane.showMessageDialog(rootPane, "السنة الجديدة لا يجب أن تكون فارغة !");
+                JOptionPane.showMessageDialog(rootPane, Statics.EMPTY_NEW_YEAR_EXC_MSG);
                 yearCB.setSelectedIndex(1);
             } else if (year.contains("/")) {
                 JOptionPane.showMessageDialog(rootPane,

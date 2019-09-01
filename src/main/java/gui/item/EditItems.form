@@ -33,7 +33,7 @@
                   <Component id="itemDataPnl" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="itemsSPnl" pref="598" max="32767" attributes="0"/>
+              <Component id="itemsSPnl" pref="601" max="32767" attributes="0"/>
           </Group>
           <Component id="titlePnl" max="32767" attributes="0"/>
       </Group>
@@ -259,20 +259,17 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="addStudentsBtn" max="32767" attributes="0"/>
                       <Component id="setPriceBtn" alignment="0" max="32767" attributes="0"/>
                       <Component id="displayItemStudentsBtn" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="setDescBtn" max="32767" attributes="0"/>
-                      <Component id="setNameBtn" max="32767" attributes="0"/>
+                      <Component id="setDescBtn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="deleteItemBtn" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                      <Component id="setNameBtn" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="deleteItemBtn" min="-2" pref="114" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -290,7 +287,10 @@
                       <Component id="setDescBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="deleteItemBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addStudentsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -350,6 +350,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteItemBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="addStudentsBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x637;&#x644;&#x627;&#x628; &#x644;&#x644;&#x639;&#x646;&#x635;&#x631;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addStudentsBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

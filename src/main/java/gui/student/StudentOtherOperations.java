@@ -5,6 +5,7 @@ import core.student.Student;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import util.Statics;
 import util.gui.GUI_Util;
 
 class StudentOtherOperations extends javax.swing.JFrame {
@@ -196,8 +197,8 @@ class StudentOtherOperations extends javax.swing.JFrame {
             return;
         }
         GUI_Util.link_frame_to_button(GUI_Util.promoteComboBoxAndSpinner("إضافة فاتورة",
-                "وصف الفاتورة", "قيمة الفاتورة", new SpinnerNumberModel(0, 0, 10_000, 10), "أضف",
-                (text, value) -> {
+                Statics.DESC_TXT + Statics.SPACE + "الفاتورة", "قيمة الفاتورة",
+                new SpinnerNumberModel(0, 0, 10_000, 10), "أضف", (text, value) -> {
                     try {
                         selectedStudent.addPurchase(value, text);
                         return true;
@@ -207,7 +208,8 @@ class StudentOtherOperations extends javax.swing.JFrame {
                         return false;
                     }
                 }),
-                addPurchaseBtn);
+                addPurchaseBtn
+        );
     }//GEN-LAST:event_addPurchaseBtnActionPerformed
 
     private void displayBalanceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBalanceBtnActionPerformed

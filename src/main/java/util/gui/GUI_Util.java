@@ -207,6 +207,13 @@ public class GUI_Util {
         return displayFrame;
     }
 
+    public static JFrame promotSelectionTable(TableModel dtm, String titleTxt,
+            String tipTxt, String buttonTxt, DoSomethingWithTable dswt) {
+        JFrame frame = new PromotSelectionTable(dtm, titleTxt, tipTxt, buttonTxt, dswt);
+        frame.setVisible(true);
+        return frame;
+    }
+
     public static void setUpRodaImgLbl(JLabel imgLbl) {
         imgLbl.setIcon(setImageIconToLabelSize(
                 new ImageIcon(
@@ -265,9 +272,15 @@ public class GUI_Util {
 
     public interface UpdateTableOperation {
 
+        void updateTable(JTable table);
+    }
+
+    public interface DoSomethingWithTable {
+
         /**
          * @param table
+         * @return true to close or false to not close
          */
-        void updateTable(JTable table);
+        boolean doSomthing(JTable table);
     }
 }
