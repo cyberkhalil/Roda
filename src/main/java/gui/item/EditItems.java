@@ -398,7 +398,7 @@ public class EditItems extends javax.swing.JFrame {
             try {
                 selectedItem.renderStudentsToTable(table);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, "حدث خطأ أثناء إظهار طلاب الصف");
+                JOptionPane.showMessageDialog(rootPane, "حدث خطأ أثناء إظهار طلاب العنصر");
                 System.err.println(ex);
             }
         }), displayItemStudentsBtn);

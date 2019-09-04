@@ -52,8 +52,13 @@ public class Item {
 
     public ArrayList<Student> getStudents() {
         ArrayList<Student> itemStudents = new ArrayList<>();
-        StudentsUtil.getStudents().stream().filter(
-                (s) -> (s.getItems().contains(this))).forEachOrdered(itemStudents::add);
+        StudentsUtil.getStudents().forEach((student) -> {
+            for (Item item : student.getItems()) {
+                if (item.getId() == id) {
+                    itemStudents.add(student);
+                }
+            }
+        });
         return itemStudents;
     }
 

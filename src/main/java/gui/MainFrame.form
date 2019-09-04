@@ -177,6 +177,11 @@
                       </Group>
                   </Group>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="importBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="exportBtn" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -194,7 +199,11 @@
                       <Component id="itemsPnl" max="32767" attributes="0"/>
                       <Component id="studentsPnl" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="exportBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="importBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -530,6 +539,22 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x633;&#x646;&#x629; &#x627;&#x644;&#x62f;&#x631;&#x627;&#x633;&#x64a;&#x629;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="exportBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x62a;&#x635;&#x62f;&#x64a;&#x631;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="importBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x62a;&#x64a;&#x631;&#x627;&#x62f;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
