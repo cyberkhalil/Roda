@@ -210,7 +210,7 @@ public class Statics {
             case NUMERIC:
                 return c.getNumericCellValue() == 0;
             case STRING:
-                return c.getRichStringCellValue().getString().trim().isEmpty();
+                return getStringFromCell(c).trim().isEmpty();
             default:
                 return false;
         }
@@ -218,6 +218,14 @@ public class Statics {
 
     public static boolean stringBetweenBrackets(String s) {
         return s.startsWith("(") && s.endsWith(")");
+    }
+
+    public static String getStringFromCell(Cell c) {
+        try {
+            return c.getRichStringCellValue().getString();
+        } catch (Exception ex) {
+            return "";
+        }
     }
 
 }

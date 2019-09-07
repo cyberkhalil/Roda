@@ -50,12 +50,11 @@ public class StudentsUtil {
         int max = (int) c.getNumericCellValue() + 2;
         String[] headers = new String[Student.COLUMN_COUNT - 3];
 
-        headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
+        headers[0] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(0));
         headers[1] = STUDENT_NAME_TXT;
-        headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
+        headers[2] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(3));
         for (int i = 6; i < Student.COLUMN_COUNT; i++) {
-            headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i)
-                    .getRichStringCellValue().getString();
+            headers[i - 3] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(i));
         }
 
         ArrayList<Object[]> data = new ArrayList<>();
@@ -114,12 +113,11 @@ public class StudentsUtil {
     public static DefaultTableModel getStudentsAsTable(ArrayList<Student> students) {
         String[] headers = new String[Student.COLUMN_COUNT - 5];
 
-        headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
+        headers[0] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(0));
         headers[1] = STUDENT_NAME_TXT;
-        headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
+        headers[2] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(3));
         for (int i = 6; i < Student.COLUMN_COUNT - 2; i++) {
-            headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i)
-                    .getRichStringCellValue().getString();
+            headers[i - 3] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(i));
         }
 
         ArrayList<Object[]> data = new ArrayList<>();

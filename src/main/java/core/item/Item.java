@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static util.Statics.ITEMS_SHEET;
+import static util.Statics.getStringFromCell;
 import static util.Statics.updateSheet;
 
 public class Item {
 
-    final static int COLUMN_COUNT = 4;
+    public final static int COLUMN_COUNT = 4;
     private final int id;
     private final Row row;
     private String name;
@@ -23,9 +24,9 @@ public class Item {
     public Item(int id) {
         this.row = ITEMS_SHEET.getRow(id + 1);
         this.id = (int) row.getCell(0).getNumericCellValue();
-        this.name = row.getCell(1).getRichStringCellValue().getString();
+        this.name = getStringFromCell(row.getCell(1));
         this.price = row.getCell(2).getNumericCellValue();
-        this.description = row.getCell(3).getRichStringCellValue().getString();
+        this.description = getStringFromCell(row.getCell(3));
     }
 
     public int getId() {
@@ -88,7 +89,7 @@ public class Item {
         this.description = null;
         this.price = -1;
         StudentsUtil.getStudents().stream().filter((s) -> (s.getItems().contains(this)))
-                .forEachOrdered((s) -> s.removeItem(this));
+                .forEachOrdered((s) -> s.removeItem(id));
     }
 
 }

@@ -8,7 +8,6 @@ import util.gui.GUI_Util;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,20 +36,20 @@ public class Student {
     public Student(int id) {
         this.row = STUDENTS_SHEET.getRow(id + 1);
         this.id = (int) row.getCell(0).getNumericCellValue();
-        this.firstName = row.getCell(1).getRichStringCellValue().getString();
-        this.fatherName = row.getCell(2).getRichStringCellValue().getString();
-        this.motherName = row.getCell(3).getRichStringCellValue().getString();
-        this.grandFatherName = row.getCell(4).getRichStringCellValue().getString();
-        this.lastName = row.getCell(5).getRichStringCellValue().getString();
-        this.birthDate = row.getCell(6).getRichStringCellValue().getString();
-        this.identitiyNumber = row.getCell(7).getRichStringCellValue().getString();
-        this.guardianName = row.getCell(8).getRichStringCellValue().getString();
-        this.guardianJob = row.getCell(9).getRichStringCellValue().getString();
-        this.guardianPhone = row.getCell(10).getRichStringCellValue().getString();
-        this.citizenOrRefugee = row.getCell(11).getRichStringCellValue().getString();
-        this.address = row.getCell(12).getRichStringCellValue().getString();
+        this.firstName = getStringFromCell(row.getCell(1));
+        this.fatherName = getStringFromCell(row.getCell(2));
+        this.motherName = getStringFromCell(row.getCell(3));
+        this.grandFatherName = getStringFromCell(row.getCell(4));
+        this.lastName = getStringFromCell(row.getCell(5));
+        this.birthDate = getStringFromCell(row.getCell(6));
+        this.identitiyNumber = getStringFromCell(row.getCell(7));
+        this.guardianName = getStringFromCell(row.getCell(8));
+        this.guardianJob = getStringFromCell(row.getCell(9));
+        this.guardianPhone = getStringFromCell(row.getCell(10));
+        this.citizenOrRefugee = getStringFromCell(row.getCell(11));
+        this.address = getStringFromCell(row.getCell(12));
         this.courseId = (int) row.getCell(13).getNumericCellValue();
-        this.image = row.getCell(14).getRichStringCellValue().getString();
+        this.image = getStringFromCell(row.getCell(14));
     }
 
     public int getId() {
@@ -206,7 +205,7 @@ public class Student {
         {
             Row r = STUDENTS_PURCHASES_SHEET.getRow(1);
             for (int i = 0; i < columnCount; i++) {
-                headers[i] = r.getCell(i).getRichStringCellValue().toString();
+                headers[i] = getStringFromCell(r.getCell(i));
             }
         }
         {
@@ -350,7 +349,7 @@ public class Student {
         this.courseId = -3;
 
         getItemsAsRows().forEach((r) -> {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < Item.COLUMN_COUNT; i++) {
                 r.getCell(i).setBlank();
             }
         });
@@ -381,15 +380,11 @@ public class Student {
         updateSheet(STUDENTS_ITEMS_SHEET);
     }
 
-    public void removeItem(Item i) {
-        removeItem(i.getId());
-    }
-
     public void removeItem(int itemId) {
         ArrayList<Row> rows = getItemsAsRows();
         for (Row r : rows) {
             if ((int) r.getCell(2).getNumericCellValue() == itemId) {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < Item.COLUMN_COUNT; i++) {
                     r.getCell(i).setBlank();
                 }
                 return;

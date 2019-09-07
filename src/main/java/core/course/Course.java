@@ -25,9 +25,9 @@ public class Course {
     public Course(int id) {
         this.row = COURSES_SHEET.getRow(id + 1);
         this.id = (int) row.getCell(0).getNumericCellValue();
-        this.name = row.getCell(1).getRichStringCellValue().getString();
-        this.teacherName = row.getCell(2).getRichStringCellValue().getString();
-        this.year = row.getCell(3).getRichStringCellValue().getString();
+        this.name = getStringFromCell(row.getCell(1));
+        this.teacherName = getStringFromCell(row.getCell(2));
+        this.year = getStringFromCell(row.getCell(3));
     }
 
     public int getId() {
@@ -69,12 +69,11 @@ public class Course {
         int max = (int) c.getNumericCellValue() + 2;
         String[] headers = new String[Student.COLUMN_COUNT - 3];
 
-        headers[0] = STUDENTS_SHEET.getRow(1).getCell(0).getRichStringCellValue().getString();
+        headers[0] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(0));
         headers[1] = STUDENT_NAME_TXT;
-        headers[2] = STUDENTS_SHEET.getRow(1).getCell(3).getRichStringCellValue().getString();
+        headers[2] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(3));
         for (int i = 6; i < Student.COLUMN_COUNT; i++) {
-            headers[i - 3] = STUDENTS_SHEET.getRow(1).getCell(i).getRichStringCellValue()
-                    .getString();
+            headers[i - 3] = getStringFromCell(STUDENTS_SHEET.getRow(1).getCell(i));
         }
 
         ArrayList<Object[]> data = new ArrayList<>();

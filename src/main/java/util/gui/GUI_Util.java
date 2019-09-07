@@ -20,13 +20,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import static util.Statics.getStringFromCell;
 
 public class GUI_Util {
 
     public static DefaultTableModel buildTableModel(ArrayList<Row> rows, int columnCount) {
         String[] columnNames = new String[columnCount];
         for (int i = 0; i < columnCount; i++) {
-            columnNames[i] = rows.get(0).getCell(i).getRichStringCellValue().getString();
+            columnNames[i] = getStringFromCell(rows.get(0).getCell(i));
         }
         ArrayList<Object[]> data = new ArrayList<>(rows.size() - 1);
         for (int i = 1; i < rows.size(); i++) {
@@ -50,10 +51,8 @@ public class GUI_Util {
             int nameColumnNumber) {
         String[] options = new String[rows.size()];
         for (int i = 1; i < rows.size(); i++) {
-            options[i - 1]
-                    = rows.get(i).getCell(nameColumnNumber).getRichStringCellValue().getString()
-                    + " (id=" + (int) rows.get(i).getCell(idColumnNumber).getNumericCellValue()
-                    + ")";
+            options[i - 1] = getStringFromCell(rows.get(i).getCell(nameColumnNumber)) + " (id="
+                    + (int) rows.get(i).getCell(idColumnNumber).getNumericCellValue() + ")";
         }
         return new DefaultComboBoxModel<>(options);
     }
